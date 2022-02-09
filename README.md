@@ -1,1 +1,1 @@
-Restaurant Online Orders App
+Restaurant's Online Orders App
