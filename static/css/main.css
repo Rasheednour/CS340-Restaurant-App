@@ -31,6 +31,13 @@ body {
     margin-bottom: 200px;
 }
 
+p {
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+    position: relative;
+    bottom: 100px;
+}
 .address {
     position: relative;
     top: 40px;
