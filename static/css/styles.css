@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    background-color: cadetblue;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h1 {
+    color: white
+}
+
+button {
+    background-color: azure;
+    padding: 10px, 20px, 20px, 10px;
+    border: none;
+    margin: auto;
+    vertical-align: middle;
+    align-self: center;
+}
