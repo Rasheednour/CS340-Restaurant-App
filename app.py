@@ -10,19 +10,19 @@ def home():
 
 @app.route("/create-account")
 def user():
-    return "<h1>Create new account<h1>"
+    return render_template("create.html")
 
 @app.route("/order")
 def order():
-    return "<h1>Order Food<h1>"
+    return render_template("order.html")
 
 @app.route("/payment")
 def payment():
-    return "<h1>Pay<h1>"
+    return render_template("payment.html")
 
 @app.route("/addresses")
 def addresses():
-    return "<h1>Address List<h1>"
+    return render_template("addresses.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=5000)
