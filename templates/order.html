@@ -7,8 +7,72 @@
 <div>
 <body>
     <h1 class="home-title">Order Page</h1>
-    <h2 class="home-caption">Start Your Order</h2>
-        <a class="button1" href="{{ url_for('payment') }}">Order</a>
+
+
+    <section class="orders">
+            
+        <h2 class="home-caption">Start Your Order</h2>
+        <table>
+        <tr>
+            <td>
+                <label for="cuisines"> Cuisines </label>
+                <select name="cuisines" id="cuisines">
+                    <option value="italian">Italian</option>
+                    <option value="polish">Polish</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="indian">Indian</option>
+                    <option value="mexican">Mexican</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="food-category"> Food Category </label>
+                <select name="category" id="category">
+                    <option value="appetizers">Appetizers</option>
+                    <option value="salads">Salads</option>
+                    <option value="main-dish">Main Meals</option>
+                    <option value="sides">Sides</option>
+                    <option value="desserts">Desserts</option>
+                    <option value="drinks">Drinks</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="food-item"> Food Item </label>
+                <select name="category" id="category">
+                    <option value="appetizers">Item 1</option>
+                    <option value="salads">Item 2</option>
+                    <option value="main-dish">Item 3</option>
+                    <option value="sides">Item 4</option>
+                    <option value="desserts">Item 5</option>
+                    <option value="drinks">Item 6</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="food-item"> Quantity </label>
+                <select name="category" id="category">
+                    <option value="appetizers">1</option>
+                    <option value="salads">2</option>
+                    <option value="main-dish">3</option>
+                    <option value="sides">4</option>
+                    <option value="desserts">5</option>
+                    <option value="drinks">6</option>
+                </select>
+            </td>
+        </tr>
+         </table>
+        </section>
+
+        <a class="button1" href="{{ url_for('order') }}">Add to Order</a>
+    <a class="button1" href="{{ url_for('payment') }}">Finish Order</a>
 </body>
 </div>
 </html>

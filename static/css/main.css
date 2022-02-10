@@ -36,6 +36,41 @@ body {
     top: 40px;
 }
 
+.border1{
+    border: 2px solid rgb(129, 185, 238);
+    padding: 200px 100px 100px 800px;
+    position: relative;
+    left: 0px;
+
+}
+
+.border2{
+    border: 2px solid rgb(129, 185, 238);
+    padding: 20px 100px 40px 800px;
+    position: relative;
+    bottom: 30px;
+
+}
+
+.orders {
+    position: relative;
+    top: -80px;
+}
+select {
+    border: 2px solid rgb(129, 185, 238);
+    padding: 5px 10px 10px 10px;
+    margin-right: 40px;
+}
+
+label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+tr {
+    position: relative;
+    left: 150px;
+}
+
  input {
     border: 2px solid rgb(129, 185, 238);
     padding: 5px 10px 10px 10px;
