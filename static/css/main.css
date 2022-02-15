@@ -9,9 +9,17 @@ html {
 }
 
 body {
-    background-color: cadetblue;
     display: table-cell;
     vertical-align: middle;
+}
+
+
+.home-page {
+    background-image: url("../img/home-background.png");
+    background-color: rgb(198, 206, 217);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .home-title {
@@ -89,25 +97,50 @@ h2 {
     padding-bottom: 10px;
     font-size: 30px;
 }
-.button1 {
-    border: 3px solid rgb(129, 185, 238);
-    padding: 6px 40px;
-    margin: 80px 3px 3px 0px;
+.home-button1 {
+    white-space: nowrap;
+    border: 3px solid rgb(190, 0, 0);
+    padding: .2em 1.4em;
+    margin: 1200px 0px 3px 0px;
     border-radius: 0.2em;
     text-decoration: none;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 100;
-    color: rgb(129, 185, 238);
-    font-size: 35px;
+    color: rgb(190, 0, 0);
+    font-size: 2em;
     text-align: center;
     transition: all 0.2s;
     background-color: transparent;
 }
 
-.button1:hover{
+.home-button1:hover{
     color:rgb(255, 255, 255);
-    background-color: rgb(7, 45, 102);
-    border: 3px solid rgb(23, 1, 65);
+    background-color: rgb(190, 0, 0);
+    border: 3px solid rgb(0, 0, 0);
+    cursor:pointer;
+  }
+
+.home-button2 {
+    
+    white-space: nowrap;
+    border: 3px solid rgb(190, 0, 0);
+    padding: .2em 1.4em;
+    margin: 5000px 0px 3px 0px;
+    border-radius: 0.2em;
+    text-decoration: none;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    color: rgb(190, 0, 0);
+    font-size: 2em;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: transparent;
+}
+
+.home-button2:hover{
+    color:rgb(255, 255, 255);
+    background-color: rgb(190, 0, 0);
+    border: 3px solid rgb(0, 0, 0);
     cursor:pointer;
   }
 
