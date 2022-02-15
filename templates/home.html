@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Restaurant App</title>
+    <title>Global Foods</title>
     <link rel="stylesheet" href="../static/css/main.css?v=1.0.2">
 </head>
 <div>
-<body>
-    <h1 class="home-title">Welcome to Global Foods!</h1>
-    <h2 class="home-caption">Create an account to start your order</h2>
-        <a class="button1" href="{{ url_for('user') }}">Create Account</a>
+<body class="home-page">
+        <a class="home-button1" href="{{ url_for('user') }}">Order Now</a>
+        <a class="home-button2" href="{{ url_for('admin') }}">Admin Login</a>
 </body>
 </div>
 </html>
