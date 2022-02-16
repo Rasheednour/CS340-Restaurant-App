@@ -1,107 +1,35 @@
-html, body {
-    height: 100%;
-    text-align: center;
-}
+
+/* ---------------------------GENERAL STYLING------------------------------*/
 
 html {
-    display: table;
+    height: 110%;
     margin: auto;
 }
 
-body {
-    display: table-cell;
-    vertical-align: middle;
-}
+/* ---------------------------HOME PAGE STYLING-----------------------------------*/
 
-
-.home-page {
-    background-image: url("../img/home-background.png");
-    background-color: rgb(198, 206, 217);
-    background-repeat: no-repeat;
+.home-page{
+    position: absolute;
     background-position: center;
     background-size: cover;
+    background-image: url("../img/home-background2.png");
+    background-color: rgb(198, 206, 217);
+    background-repeat: no-repeat;
 }
 
-.home-title {
-    color: white;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 100px;
-    font-size: 60px;
-}
 
-.home-caption {
-    color: white;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 40px;
-}
 
-.create-form {
-    margin-bottom: 200px;
-}
-
-p {
-    color: white;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 40px;
-    position: relative;
-    bottom: 100px;
-}
-.address {
-    position: relative;
-    top: 40px;
-}
-
-.border1{
-    border: 2px solid rgb(129, 185, 238);
-    padding: 200px 100px 100px 800px;
-    position: relative;
-    left: 0px;
-
-}
-
-.border2{
-    border: 2px solid rgb(129, 185, 238);
-    padding: 20px 100px 40px 800px;
-    position: relative;
-    bottom: 30px;
-
-}
-
-.orders {
-    position: relative;
-    top: -80px;
-}
-select {
-    border: 2px solid rgb(129, 185, 238);
-    padding: 5px 10px 10px 10px;
-    margin-right: 40px;
-}
-
-label {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-}
-tr {
-    position: relative;
-    left: 150px;
-}
-
- input {
-    border: 2px solid rgb(129, 185, 238);
-    padding: 5px 10px 10px 10px;
-    margin-right: 40px;
-}
-h2 {
-    color: white;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 10px;
-    font-size: 30px;
-}
-.home-button1 {
+.portal-button{
+    margin: 100px, 10px;
+    width: auto;
+    position: absolute;
+    justify-content: center;
+    left: 590pt;
+    top: 340pt;
+    display: inline-block;
     white-space: nowrap;
     border: 3px solid rgb(190, 0, 0);
     padding: .2em 1.4em;
-    margin: 1200px 0px 3px 0px;
     border-radius: 0.2em;
     text-decoration: none;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -113,57 +41,12 @@ h2 {
     background-color: transparent;
 }
 
-.home-button1:hover{
+.portal-button:hover{
     color:rgb(255, 255, 255);
     background-color: rgb(190, 0, 0);
     border: 3px solid rgb(0, 0, 0);
     cursor:pointer;
   }
 
-.home-button2 {
-    
-    white-space: nowrap;
-    border: 3px solid rgb(190, 0, 0);
-    padding: .2em 1.4em;
-    margin: 5000px 0px 3px 0px;
-    border-radius: 0.2em;
-    text-decoration: none;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 100;
-    color: rgb(190, 0, 0);
-    font-size: 2em;
-    text-align: center;
-    transition: all 0.2s;
-    background-color: transparent;
-}
+/* ------------------------DATABASE PAGE STYLING---------------------------------*/
 
-.home-button2:hover{
-    color:rgb(255, 255, 255);
-    background-color: rgb(190, 0, 0);
-    border: 3px solid rgb(0, 0, 0);
-    cursor:pointer;
-  }
-
-.button2 {
-    position: relative;
-    top:-100px;
-    margin-top: 0px;
-    border: 3px solid rgb(129, 185, 238);
-    padding: 6px 40px;
-    border-radius: 0.2em;
-    text-decoration: none;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 100;
-    color: rgb(129, 185, 238);
-    font-size: 35px;
-    text-align: center;
-    transition: all 0.2s;
-    background-color: transparent;
-}
-
-.button2:hover{
-    color:rgb(255, 255, 255);
-    background-color: rgb(7, 45, 102);
-    border: 3px solid rgb(23, 1, 65);
-    cursor:pointer;
-  }
