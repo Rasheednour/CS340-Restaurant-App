@@ -1,0 +1,132 @@
+body {
+    background-image: url("../img/home-background3.png");
+    background-position: center center center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.mytabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1600px;
+    margin: 200px auto;
+    padding: 25px;
+}
+
+.mytabs input[type="radio"] {
+    display: none;
+}
+
+.mytabs label {
+    padding: 25px;
+    background: #e2e2e2;
+    font-weight: bold;
+}
+
+.mytabs .tab {
+    width: 100%;
+    padding: 20px;
+    background: rgba(211, 31, 31, 0.4);
+    order: 1;
+    display: none;
+}
+
+.mytabs .tab h2 {
+    font-size: 3em;
+}
+
+.mytabs input[type = 'radio']:checked + label + .tab {
+    display: block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+    background: rgba(211, 31, 31, 0.4);
+}
+/*--------------------------------------------------------------------------------*/
+
+
+.container {
+    max-width: 1500px;
+    width: 100%;
+    background:rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+
+.container .title {
+    font-size: 25px;
+    font-weight: 600;
+    
+}
+
+.container form .order-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+
+}
+
+form .order-details .input-box{
+    margin-bottom: 15px;
+    width: calc(40% / 2 - 20px);
+}
+
+form .order-details .input-box details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+
+form .order-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 10px;
+    font-size: 13px;
+    border-bottom-width: 2px;
+    transition: all 0.1s ease;
+}
+
+form .order-details .input-box input:focus, 
+form .order-details .input-box input:valid{
+    border-color: black;
+    border: 2px solid black;
+}
+
+form .button{
+    height: 45px;
+    margin: 45px 0;
+}
+
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: 1px solid red;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    color:rgb(218, 71, 71)
+}
+
+form .button input:hover{
+    background: red;
+    color: white;
+    
+}
+
+@media (max-width: 584px) {
+    .container{
+        max-width: 100%;
+    }
+    form .order-details .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+}

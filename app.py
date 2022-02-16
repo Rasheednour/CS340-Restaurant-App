@@ -28,5 +28,11 @@ def addresses():
 def finish():
     return render_template("finish.html")
 
+
+@app.route("/database")
+def database():
+    return render_template("database.html")
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=5000)
