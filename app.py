@@ -8,30 +8,9 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/create-account")
-def user():
-    return render_template("create.html")
-
-@app.route("/order")
-def order():
-    return render_template("order.html")
-
-@app.route("/payment")
-def payment():
-    return render_template("payment.html")
-
-@app.route("/addresses")
-def addresses():
-    return render_template("addresses.html")
-
-@app.route("/finish")
-def finish():
-    return render_template("finish.html")
-
-
-@app.route("/database")
-def database():
-    return render_template("database.html")
+@app.route("/restaurant-database")
+def restaurant_database():
+    return render_template("restaurant_database.html")
 
 
 if __name__ == "__main__":
