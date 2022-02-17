@@ -1,33 +1,23 @@
 
 /* ---------------------------GENERAL STYLING------------------------------*/
-
-html {
-    height: 110%;
-    margin: auto;
+body {
+    background-image: url("../img/home-background2.png");
+    background-position: center center center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* ---------------------------HOME PAGE STYLING-----------------------------------*/
 
 .home-page{
-    position: absolute;
-    background-position: center;
-    background-size: cover;
-    background-image: url("../img/home-background2.png");
-    background-color: rgb(198, 206, 217);
-    background-repeat: no-repeat;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30rem;
 }
 
-
-
 .portal-button{
-    margin: 100px, 10px;
-    width: auto;
-    position: absolute;
-    justify-content: center;
-    left: 590pt;
-    top: 340pt;
-    display: inline-block;
-    white-space: nowrap;
+    margin: auto;
     border: 3px solid rgb(190, 0, 0);
     padding: .2em 1.4em;
     border-radius: 0.2em;

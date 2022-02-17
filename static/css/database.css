@@ -1,7 +1,6 @@
 body {
     background-image: url("../img/home-background3.png");
     background-position: center center center center;
-    background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -22,6 +21,8 @@ body {
     padding: 25px;
     background: #e2e2e2;
     font-weight: bold;
+    border: 0.5px solid rgb(204, 146, 146);
+    border-bottom: none;
 }
 
 .mytabs .tab {
@@ -43,7 +44,14 @@ body {
 .mytabs input[type="radio"]:checked + label {
     background: rgba(211, 31, 31, 0.4);
 }
-/*--------------------------------------------------------------------------------*/
+
+.mytabs label:hover{
+    cursor: pointer;
+    background: rgb(170, 1, 1);
+}
+
+
+/*--------------------------form styling-----------------------------------*/
 
 
 .container {
@@ -51,12 +59,14 @@ body {
     width: 100%;
     background:rgb(255, 255, 255);
     padding: 25px 30px;
+    padding-bottom: -5px;
     border-radius: 5px;
 }
 
 .container .title {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
+    margin-left: 640px;
     
 }
 
@@ -100,14 +110,14 @@ form .order-details .input-box input:valid{
 
 form .button{
     height: 45px;
-    margin: 45px 0;
+    margin: 45px 630px;
 }
 
 form .button input{
     height: 100%;
-    width: 100%;
+    width: 250px;
     outline: none;
-    border: 1px solid red;
+    border: 1px solid rgb(170, 1, 1);
     font-size: 18px;
     font-weight: 800;
     border-radius: 5px;
@@ -116,8 +126,9 @@ form .button input{
 }
 
 form .button input:hover{
-    background: red;
+    background: rgb(170, 1, 1);
     color: white;
+    cursor: pointer;
     
 }
 
@@ -129,4 +140,94 @@ form .button input:hover{
         margin-bottom: 15px;
         width: 100%;
     }
+}
+
+/*---------------------table styling-------------------------*/
+
+.table-container{
+    background-color: white;
+    padding-bottom: 2rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1500px;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0 50px;
+    box-shadow: 0px 5px 10px rgb(146, 146, 146);
+    text-align: left;
+    overflow: hidden;
+
+}
+
+
+thead{
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(138, 138, 138);
+    color: rgb(255, 255, 255);
+}
+
+th{
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    font-weight: 1200;
+
+}
+
+td{
+    padding: 1rem 2rem;
+}
+
+.amount{
+    text-align: right;
+}
+
+.head-row{
+    background-color: dark rgb(163, 163, 163);
+    color: white;
+    font-weight: 700;
+}
+
+.body-row{
+    background-color: white;
+}
+
+tr:nth-child(even){
+    background-color: rgb(236, 236, 236)
+}
+
+.body-row:hover{
+    background-color: rgb(107, 169, 194);
+    color: rgb(255, 255, 255);
+}
+
+caption{
+    padding: 1rem 2rem;
+    letter-spacing: 0.1rem;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.edit:hover{
+    background-color: rgb(0, 122, 41);
+    cursor: pointer;
+    color: black;
+    font-weight: 900;
+}
+
+.delete:hover{
+    background-color: rgb(171,1,1);
+    cursor: pointer;
+    color: black;
+    font-weight: 900;
+}
+
+.edit, .delete{
+    border: 1px solid grey;
 }

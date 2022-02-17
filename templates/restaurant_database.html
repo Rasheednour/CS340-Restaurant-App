@@ -5,83 +5,231 @@
     <link rel="stylesheet" href="../static/css/database.css">
 </head>
 <body>
+    <div class="page-background">
+        <div class="mytabs">
 
-    <div class="mytabs">
+            <input type="radio" id="orders" name="mytabs" checked="checked">
+            <label for="orders">Orders</label>
 
-        <input type="radio" id="orders" name="mytabs" checked="checked">
-        <label for="orders">Orders</label>
+            <div class="tab">
 
-        <div class="tab">
-            <h2>Order List</h2>
-            <p>New, current, and past orders will show here.</p>
+                <div class ="container">
+                    <div class = "title">Add New Order</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Customer</span>
+                                <input type="text" placeholder="Enter The customer name" required>
+                            </div>
 
-            <div class ="container">
-                <div class = "title">Add New Order</div>
-                <form action="#">
-                    <div class="order-details">
-                        <div class="input-box">
-                            <span class="details">Customer</span>
-                            <input type="text" placeholder="Enter The customer name" required>
+                            <div class="input-box">
+                                <span class="details">Address</span>
+                                <input type="text" placeholder="Enter The customer's address" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Food</span>
+                                <input type="text" placeholder="Enter The Food" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Quantity</span>
+                                <input type="text" placeholder="Enter The customer name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Price</span>
+                                <input type="text" placeholder="Enter The total price" required>
+                            </div>
                         </div>
-
-                        <div class="input-box">
-                            <span class="details">Address</span>
-                            <input type="text" placeholder="Enter The customer's address" required>
+                        <div class="button">
+                            <input type="submit" value="Add">
                         </div>
+                    </form>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <caption>New Orders</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Customer ID</th>
+                                <th>Order ID</th>
+                                <th>Customer Address</th>
+                                <th>Order Details</th>
+                                <th>Order Progress</th>
+                                <th>Order Date</th>
+                                <th>Total Price</th>
+                                <th>Edit Order</th>
+                                <th>Delete Order</th>
+                            </tr>
+                        </thead>
 
-                        <div class="input-box">
-                            <span class="details">Food</span>
-                            <input type="text" placeholder="Enter The Food" required>
-                        </div>
+                        <tbody>
+                            <tr class="body-row">
+                                <td>15</td>
+                                <td>20312</td>
+                                <td>167</td>
+                                <td>Orange Juice  x1</td>
+                                <td class="progress-new">New</td>
+                                <td>02/13/2022</td>
+                                <td class="amount">$3.50</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>124</td>
+                                <td>20313</td>
+                                <td>201</td>
+                                <td>Mangolian Beef  x2</td>
+                                <td class="progress progress-new">New</td>
+                                <td>02/13/2022</td>
+                                <td class="amount">$22.00</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>382</td>
+                                <td>20314</td>
+                                <td>221</td>
+                                <td>Green Salad  x3</td>
+                                <td class="progress progress-new">New</td>
+                                <td>02/13/2022</td>
+                                <td class="amount">$5.00</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <div class="input-box">
-                            <span class="details">Quantity</span>
-                            <input type="text" placeholder="Enter The customer name" required>
-                        </div>
 
-                        <div class="input-box">
-                            <span class="details">Price</span>
-                            <input type="text" placeholder="Enter The total price" required>
-                        </div>
-                    </div>
-                    <div class="button">
-                        <input type="submit" value="Add">
-                    </div>
-                </form>
             </div>
 
 
+
+
+
+            <input type="radio" id="customers" name="mytabs">
+            <label for="customers">Customers</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Customer</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">First Name</span>
+                                <input type="text" placeholder="Enter The first name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Last Name</span>
+                                <input type="text" placeholder="Enter The last name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Email</span>
+                                <input type="text" placeholder="Enter The Email" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Phone Number</span>
+                                <input type="text" placeholder="Enter The Phone Number" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Address</span>
+                                <input type="text" placeholder="Choose The Address" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <caption>New Orders</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Customer ID</th>
+                                <th>Address ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Phone Number</th>
+                                <th>Edit Order</th>
+                                <th>Delete Order</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td>1</td>
+                                <td>4</td>
+                                <td>Alfred</td>
+                                <td>Clark</td>
+                                <td>alf.clark@hotmail.com</td>
+                                <td>021244812</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>2</td>
+                                <td>5</td>
+                                <td>Lisa</td>
+                                <td>Young</td>
+                                <td>lisa-1992k@gmail.com</td>
+                                <td>021349553</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>3</td>
+                                <td>7</td>
+                                <td>Ali</td>
+                                <td>Omer</td>
+                                <td>ali-omer@yahoo.com</td>
+                                <td>021140012</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+            
+            <input type="radio" id="addresses" name="mytabs">
+            <label for="addresses">Addresses</label>
+
+            <div class="tab">
+                <h2>Addresses</h2>
+                <p>Customers Addresses will show here</p>
+            </div>
+
+
+            <input type="radio" id="foods" name="mytabs">
+            <label for="foods">Foods</label>
+
+            <div class="tab">
+                <h2>Foods</h2>
+                <p>Food menu will show here</p>
+            </div>
+
         </div>
-
-
-
-        <input type="radio" id="customers" name="mytabs">
-        <label for="customers">Customers</label>
-
-        <div class="tab">
-            <h2>Customers</h2>
-            <p>Customers will show here</p>
-        </div>
-
-        
-        <input type="radio" id="addresses" name="mytabs">
-        <label for="addresses">Addresses</label>
-
-        <div class="tab">
-            <h2>Addresses</h2>
-            <p>Customers Addresses will show here</p>
-        </div>
-
-
-        <input type="radio" id="foods" name="mytabs">
-        <label for="foods">Foods</label>
-
-        <div class="tab">
-            <h2>Foods</h2>
-            <p>Food menu will show here</p>
-        </div>
-
     </div>
-
 </body>
 </html>
