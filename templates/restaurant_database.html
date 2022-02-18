@@ -12,33 +12,31 @@
             <label for="orders">Orders</label>
 
             <div class="tab">
-
                 <div class ="container">
                     <div class = "title">Add New Order</div>
                     <form action="#">
                         <div class="order-details">
                             <div class="input-box">
-                                <span class="details">Customer</span>
-                                <input type="text" placeholder="Enter The customer name" required>
+                                <span class="details">Customer ID</span>
+                                <input type="text" placeholder="Enter The customer ID" required>
                             </div>
-
-                            <div class="input-box">
-                                <span class="details">Address</span>
-                                <input type="text" placeholder="Enter The customer's address" required>
-                            </div>
-
                             <div class="input-box">
                                 <span class="details">Food</span>
                                 <input type="text" placeholder="Enter The Food" required>
                             </div>
 
                             <div class="input-box">
-                                <span class="details">Quantity</span>
-                                <input type="text" placeholder="Enter The customer name" required>
+                                <span class="details">Progress</span>
+                                <input type="text" placeholder="Enter The Order Progress" required>
                             </div>
 
                             <div class="input-box">
-                                <span class="details">Price</span>
+                                <span class="details">Order Date</span>
+                                <input type="text" placeholder="Enter The Order Date" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Total Price</span>
                                 <input type="text" placeholder="Enter The total price" required>
                             </div>
                         </div>
@@ -47,15 +45,14 @@
                         </div>
                     </form>
                 </div>
-                
                 <div class="table-container">
                     <table>
-                        <caption>New Orders</caption>
+                        <caption>Order List</caption>
                         <thead>
                             <tr class="head-row">
-                                <th>Customer ID</th>
                                 <th>Order ID</th>
-                                <th>Customer Address</th>
+                                <th>Customer ID</th>
+                                <th>Customer Address ID</th>
                                 <th>Order Details</th>
                                 <th>Order Progress</th>
                                 <th>Order Date</th>
@@ -64,11 +61,10 @@
                                 <th>Delete Order</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr class="body-row">
-                                <td>15</td>
                                 <td>20312</td>
+                                <td>15</td>
                                 <td>167</td>
                                 <td>Orange Juice  x1</td>
                                 <td class="progress-new">New</td>
@@ -78,22 +74,22 @@
                                 <td class="delete">Delete</td>
                             </tr>
                             <tr class="body-row">
-                                <td>124</td>
                                 <td>20313</td>
+                                <td>124</td>
                                 <td>201</td>
                                 <td>Mangolian Beef  x2</td>
-                                <td class="progress progress-new">New</td>
+                                <td class="progress progress-new">Preparing</td>
                                 <td>02/13/2022</td>
                                 <td class="amount">$22.00</td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
                             <tr class="body-row">
-                                <td>382</td>
                                 <td>20314</td>
+                                <td>382</td>
                                 <td>221</td>
                                 <td>Green Salad  x3</td>
-                                <td class="progress progress-new">New</td>
+                                <td class="progress progress-new">Delivered</td>
                                 <td>02/13/2022</td>
                                 <td class="amount">$5.00</td>
                                 <td class="edit">Edit</td>
@@ -102,10 +98,170 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
 
+            
+            <input type="radio" id="order-items" name="mytabs">
+            <label for="order-items">Order Items</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Order Item</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Order ID</span>
+                                <input type="text" placeholder="Enter The Order ID" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Food ID</span>
+                                <input type="text" placeholder="Enter The Food ID" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Quantity</span>
+                                <input type="text" placeholder="Enter The Food Quantity" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Pice</span>
+                                <input type="text" placeholder="Enter The Total Price" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <caption>Order Items List</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Order ID</th>
+                                <th>Food ID</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Edit Item</th>
+                                <th>Delete Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="body-row">
+                                <td>20312</td>
+                                <td>15</td>
+                                <td>3</td>
+                                <td class="amount">$3.50</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>20313</td>
+                                <td>124</td>
+                                <td>2</td>
+                                <td class="amount">$22.00</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>20314</td>
+                                <td>382</td>
+                                <td>3</td>
+                                <td class="amount">$5.00</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <input type="radio" id="payments" name="mytabs">
+            <label for="payments">Payments</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Payment</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Customer ID</span>
+                                <input type="text" placeholder="Enter The Customer ID" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Order ID</span>
+                                <input type="text" placeholder="Enter The Order ID" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Date</span>
+                                <input type="text" placeholder="Enter The Payment Date" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Amount</span>
+                                <input type="text" placeholder="Enter The Total Amount" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Mathod</span>
+                                <input type="text" placeholder="Enter The Payment Method" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <caption>Payments</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Customer ID</th>
+                                <th>Order ID</th>
+                                <th>Payment Date</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Edit Item</th>
+                                <th>Delete Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="body-row">
+                                <td>12</td>
+                                <td>20312</td>
+                                <td>2/12/2021</td>
+                                <td class="amount">$24.50</td>
+                                <td>Credit Card</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>132</td>
+                                <td>20109</td>
+                                <td>2/09/2021</td>
+                                <td class="amount">$41.30</td>
+                                <td>Credit Card</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>12</td>
+                                <td>10311</td>
+                                <td>1/23/2021</td>
+                                <td class="amount">$34.50</td>
+                                <td>Cash</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
 
@@ -152,7 +308,7 @@
                 
                 <div class="table-container">
                     <table>
-                        <caption>New Orders</caption>
+                        <caption>Customer Base</caption>
                         <thead>
                             <tr class="head-row">
                                 <th>Customer ID</th>
@@ -161,8 +317,8 @@
                                 <th>Last Name</th>
                                 <th>Email Address</th>
                                 <th>Phone Number</th>
-                                <th>Edit Order</th>
-                                <th>Delete Order</th>
+                                <th>Edit Customer</th>
+                                <th>Delete Customer</th>
                             </tr>
                         </thead>
 
@@ -216,8 +372,84 @@
             <label for="addresses">Addresses</label>
 
             <div class="tab">
-                <h2>Addresses</h2>
-                <p>Customers Addresses will show here</p>
+                <div class ="container">
+                    <div class = "title">Add New Address</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Customer ID</span>
+                                <input type="text" placeholder="Enter The Customer ID" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">City</span>
+                                <input type="text" placeholder="Enter The City" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Street Name</span>
+                                <input type="text" placeholder="Enter The Street Name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Street Number</span>
+                                <input type="text" placeholder="Enter The Street Number" required>
+                            </div>
+
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <caption>Customer Addresses</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Address ID</th>
+                                <th>Customer ID</th>
+                                <th>City</th>
+                                <th>Street Name</th>
+                                <th>Street Number</th>
+                                <th>Edit Address</th>
+                                <th>Delete Address</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td>1</td>
+                                <td>4</td>
+                                <td>Boston</td>
+                                <td>Raven treet</td>
+                                <td>25345</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>2</td>
+                                <td>5</td>
+                                <td>Dallas</td>
+                                <td>6th Avenue</td>
+                                <td>235523</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>3</td>
+                                <td>12</td>
+                                <td>Sao Paolo</td>
+                                <td>Church Road</td>
+                                <td>55643</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
@@ -225,8 +457,118 @@
             <label for="foods">Foods</label>
 
             <div class="tab">
-                <h2>Foods</h2>
-                <p>Food menu will show here</p>
+                <div class ="container">
+                    <div class = "title">Add New Food</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Name</span>
+                                <input type="text" placeholder="Enter The Food Name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Description</span>
+                                <input type="text" placeholder="Enter The Food Description" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Category</span>
+                                <input type="text" placeholder="Enter The Food Category" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Calories</span>
+                                <input type="text" placeholder="Enter The Calories" required>
+                            </div>
+                            
+                            <div class="input-box">
+                                <span class="details">Cuisine</span>
+                                <input type="text" placeholder="Enter The Cuisine" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Price</span>
+                                <input type="text" placeholder="Enter The Price" required>
+                            </div>
+
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class ="container-search">
+                    <div class = "title">Search Food Menu</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Seach Food</span>
+                                <input type="text" placeholder="Enter Food Name" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Search">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <caption>Food Menu</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Food ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Calories</th>
+                                <th>Cuisine</th>
+                                <th>Price</th>
+                                <th>Edit Food</th>
+                                <th>Delete Food</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td>1</td>
+                                <td>Mangolian Beef</td>
+                                <td>Stir fryed sliced flank steak with soy sauce and green onions</td>
+                                <td>Main Dish</td>
+                                <td>800</td>
+                                <td>Chinese</td>
+                                <td>$20.5</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>2</td>
+                                <td>Sugarcane Juice</td>
+                                <td>Delicious juice made from sugarcanes imported from Thaliand</td>
+                                <td>Drinks</td>
+                                <td>150</td>
+                                <td>Thai</td>
+                                <td>$4.5</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            <tr class="body-row">
+                                <td>3</td>
+                                <td>Zurek</td>
+                                <td>Fermented soup made with sour rye flour</td>
+                                <td>Appetizer</td>
+                                <td>120</td>
+                                <td>Polish</td>
+                                <td>$8.5</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>

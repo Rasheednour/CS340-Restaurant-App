@@ -1,23 +1,38 @@
 
 /* ---------------------------GENERAL STYLING------------------------------*/
 body {
-    background-image: url("../img/home-background2.png");
-    background-position: center center center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    margin: 0;
+    padding: 0;
+    
     font-family: 'Courier New', Courier, monospace;
+    
 }
 
 /* ---------------------------HOME PAGE STYLING-----------------------------------*/
 
-.home-page{
-    justify-content: center;
-    text-align: center;
-    margin-top: 30rem;
+
+.background-image{
+    background-image: url("../img/home-background2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 
+.button{
+    
+}
+
+.button-container{
+    position: relative;
+    width: 100%;
+    max-width: 4000px;
+}
+
+
 .portal-button{
-    margin: auto;
+    position: relative;
+    left: 42%;
+    top: 50%;
     border: 3px solid rgb(190, 0, 0);
     padding: .2em 1.4em;
     border-radius: 0.2em;
@@ -38,5 +53,21 @@ body {
     cursor:pointer;
   }
 
+
+  .button:hover{
+    color:rgb(255, 255, 255);
+    background-color: rgb(190, 0, 0);
+    border: 3px solid rgb(0, 0, 0);
+    cursor:pointer;
+  }
+
+
+
 /* ------------------------DATABASE PAGE STYLING---------------------------------*/
 
+@media screen and (min-width: 600px) and (max-width: 2920px) {
+    a.button-container{
+        text-align: center;
+        margin-top: 37rem;
+    }
+  }
