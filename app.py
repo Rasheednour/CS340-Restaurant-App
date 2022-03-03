@@ -47,7 +47,7 @@ def restaurant_database():
 
     return render_template("restaurant-database.html", foods=foods, orders=orders, order_items=order_items, customers=customers, addresses=addresses, payments=payments)
 
-@app.route("/restaurant_database", methods=['POST'])
+@app.route("/restauarant-database", methods=['POST'])
 def database_post():
     cur = mysql.connection.cursor()
     data = request.form

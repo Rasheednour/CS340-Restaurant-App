@@ -39,7 +39,7 @@ body {
 }
 
 .mytabs .tab-link {
-    
+
 }
 
 .mytabs .tab h2 {
@@ -120,6 +120,18 @@ form .order-details .input-box details{
 
 form .order-details .input-box input{
     height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 10px;
+    font-size: 13px;
+    border-bottom-width: 2px;
+    transition: all 0.1s ease;
+}
+
+form .order-details .input-box select{
+    height: 50px;
     width: 100%;
     outline: none;
     border-radius: 5px;
