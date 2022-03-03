@@ -38,6 +38,10 @@ body {
     display: none;
 }
 
+.mytabs .tab-link {
+    
+}
+
 .mytabs .tab h2 {
     font-size: 3em;
 }
@@ -55,6 +59,8 @@ body {
     background: rgb(170, 1, 1);
 }
 
+.mytabs .submit-tab {
+}
 
 /*--------------------------form styling-----------------------------------*/
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from audioop import add
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 
@@ -21,23 +22,41 @@ def home():
     # return "done"
     return render_template("home.html")
 
-@app.route("/foods")
-def foods():
-    cur = mysql.connection.cursor()
-    cur.execute('''SELECT * from foods''')
-    rows = cur.fetchall()
-    return render_template("foods.html", rows=rows)
+@app.route("/restauarant-database")
+def restaurant_database():
 
-@app.route("/foods", methods=['POST'])
-def food_form_post():
+    cur = mysql.connection.cursor()
+
+    cur.execute('''SELECT * from foods''')
+    foods = cur.fetchall()
+
+    cur.execute('''SELECT * from orders''')
+    orders = cur.fetchall()
+
+    cur.execute('''SELECT * from orderitems''')
+    order_items = cur.fetchall()
+
+    cur.execute('''SELECT * from customers''')
+    customers = cur.fetchall()
+
+    cur.execute('''SELECT * from addresses''')
+    addresses = cur.fetchall()
+
+    cur.execute('''SELECT * from payments''')
+    payments = cur.fetchall()
+
+    return render_template("restaurant-database.html", foods=foods, orders=orders, order_items=order_items, customers=customers, addresses=addresses, payments=payments)
+
+@app.route("/restaurant_database", methods=['POST'])
+def database_post():
     cur = mysql.connection.cursor()
     data = request.form
     values = (data["name"], data["description"], data["category"], data["calories"], data["cuisine"], data["price"])
     sql = ('''INSERT INTO foods (foodName, foodDescription, foodCategory, calories, cuisine, price)
-                VALUES (%s, %s, %s, %s, %s, %s)''')
+              VALUES (%s, %s, %s, %s, %s, %s)''')
     cur.execute(sql, values)
     mysql.connection.commit()
-    return foods()
+    return restaurant_database()
 
     
 
