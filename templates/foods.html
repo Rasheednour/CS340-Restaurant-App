@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Foods</title>
+    <link rel="stylesheet" href="../static/css/database.css">
+</head>
+<body>
+    <div class="page-background">
+        <div class="mytabs">
+
+            <input type="radio" id="orders" name="mytabs" >
+            <label for="orders">Orders</label>
+
+            
+            <input type="radio" id="order-items" name="mytabs">
+            <label for="order-items">Order Items</label>
+
+            
+            <input type="radio" id="payments" name="mytabs">
+            <label for="payments">Payments</label>
+
+            
+
+            <input type="radio" id="customers" name="mytabs">
+            <label for="customers">Customers</label>
+
+            
+            
+            <input type="radio" id="addresses" name="mytabs">
+            <label for="addresses">Addresses</label>
+
+           
+            <input type="radio" id="foods" name="mytabs" checked="checked">
+            <label for="foods">Foods</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Food</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Name</span>
+                                <input name="name" type="text" placeholder="Enter The Food Name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Description</span>
+                                <input name="description" type="text" placeholder="Enter The Food Description" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Category</span>
+                                <input name="category" type="text" placeholder="Enter The Food Category" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Calories</span>
+                                <input name="calories" type="number" placeholder="Enter The Calories" required>
+                            </div>
+                            
+                            <div class="input-box">
+                                <span class="details">Cuisine</span>
+                                <input name="cuisine" type="text" placeholder="Enter The Cuisine" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Price</span>
+                                <input name="price" type="number" placeholder="Enter The Price" required>
+                            </div>
+
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class ="container-search">
+                    <div class = "title">Search Food Menu</div>
+                    <form action="#">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Seach Food</span>
+                                <input type="text" placeholder="Enter Food Name" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Search">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <caption>Food Menu</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Food ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Calories</th>
+                                <th>Cuisine</th>
+                                <th>Price</th>
+                                <th>Edit Food</th>
+                                <th>Delete Food</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for row in rows%}
+                            <tr class="body-row">
+                                <td>{{ row.foodID }}</td>
+                                <td>{{ row.foodName }}</td>
+                                <td>{{ row.foodDescription }}</td>
+                                <td>{{ row.foodCategory }}</td>
+                                <td>{{ row.calories }}</td>
+                                <td>{{ row.cuisine }}</td>
+                                <td>{{ row.price }}</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
