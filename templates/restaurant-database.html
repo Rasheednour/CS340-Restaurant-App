@@ -213,41 +213,23 @@
                             <tr class="head-row">
                                 <th>Order ID</th>
                                 <th>Food ID</th>
-                                <th>Food Name</th>
                                 <th>Quantity</th>
-                                <th>Price</th>
+                                <th>Total Price</th>
                                 <th>Edit Item</th>
                                 <th>Delete Item</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for item in order_items%}
                             <tr class="body-row">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Mangolian Beef</td>
-                                <td>2</td>
-                                <td class="amount">$41.00</td>
+                                <td>{{ item.orderID }}</td>
+                                <td>{{ item.foodID }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td class="amount">{{ item.totalPrice }}</td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
-                            <tr class="body-row">
-                                <td>2</td>
-                                <td>2</td>
-                                <td>Sugarcane Juice</td>
-                                <td>3</td>
-                                <td class="amount">$13.50</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
-                            <tr class="body-row">
-                                <td>3</td>
-                                <td>3</td>
-                                <td>Zurek</td>
-                                <td>3</td>
-                                <td class="amount">$25.50</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -299,7 +281,6 @@
                             <tr class="head-row">
                                 <th>Payment ID</th>
                                 <th>Customer ID</th>
-                                <th>Customer Name</th>
                                 <th>Order ID</th>
                                 <th>Payment Date</th>
                                 <th>Amount</th>
@@ -309,39 +290,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for payment in payments%}
                             <tr class="body-row">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Alfred Clark</td>
-                                <td>1</td>
-                                <td>2/12/2021</td>
-                                <td class="amount">$24.50</td>
-                                <td>Credit Card</td>
+                                <td>{{ payment.paymentID }}</td>
+                                <td>{{ payment.customerID }}</td>
+                                <td>{{ payment.orderID }}</td>
+                                <td>{{ payment.paymentDate }}</td>
+                                <td class="amound">{{ payment.paymentAmount }}</td>
+                                <td>{{ payment.paymentMethod }}</td>
+                                <td></td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
-                            <tr class="body-row">
-                                <td>2</td>
-                                <td>2</td>
-                                <td>Lisa Young</td>
-                                <td>2</td>
-                                <td>2/09/2021</td>
-                                <td class="amount">$41.30</td>
-                                <td>Credit Card</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
-                            <tr class="body-row">
-                                <td>3</td>
-                                <td>3</td>
-                                <td>Ali Omer</td>
-                                <td>3</td>
-                                <td>1/23/2021</td>
-                                <td class="amount">$34.50</td>
-                                <td>Cash</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -394,7 +355,6 @@
                             <tr class="head-row">
                                 <th>Customer ID</th>
                                 <th>Address ID</th>
-                                <th>Current Address</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email Address</th>
@@ -405,39 +365,18 @@
                         </thead>
 
                         <tbody>
+                            {% for customer in customers%}
                             <tr class="body-row">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>25345, Raven Street, Boston</td>
-                                <td>Alfred</td>
-                                <td>Clark</td>
-                                <td>alf.clark@hotmail.com</td>
-                                <td>021244812</td>
+                                <td>{{ customer.customerID }}</td>
+                                <td>{{ customer.currentAddress }}</td>
+                                <td>{{ customer.firstName }}</td>
+                                <td>{{ customer.lastName }}</td>
+                                <td>{{ customer.email }}</td>
+                                <td>{{ customer.phoneNumber }}</td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
-                            <tr class="body-row">
-                                <td>2</td>
-                                <td>2</td>
-                                <td>235523, 6th Avenue, Dallas</td>
-                                <td>Lisa</td>
-                                <td>Young</td>
-                                <td>lisa-1992k@gmail.com</td>
-                                <td>021349553</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
-                            <tr class="body-row">
-                                <td>3</td>
-                                <td>3</td>
-                                <td>55643, Church Road, Sao Paolo</td>
-                                <td>Ali</td>
-                                <td>Omer</td>
-                                <td>ali-omer@yahoo.com</td>
-                                <td>021140012</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -489,7 +428,6 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Address ID</th>
-                                <th>Customer ID</th>
                                 <th>City</th>
                                 <th>Street Name</th>
                                 <th>Street Number</th>
@@ -499,39 +437,20 @@
                         </thead>
 
                         <tbody>
+                            {% for address in addresses%}
                             <tr class="body-row">
-                                <td>1</td>
-                                <td>4</td>
-                                <td>Boston</td>
-                                <td>Raven treet</td>
-                                <td>25345</td>
+                                <td>{{ address.addressID }}</td>
+                                <td>{{ address.city }}</td>
+                                <td>{{ address.streetName }}</td>
+                                <td>{{ address.streetNumber }}</td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
-                            <tr class="body-row">
-                                <td>2</td>
-                                <td>5</td>
-                                <td>Dallas</td>
-                                <td>6th Avenue</td>
-                                <td>235523</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
-                            <tr class="body-row">
-                                <td>3</td>
-                                <td>12</td>
-                                <td>Sao Paolo</td>
-                                <td>Church Road</td>
-                                <td>55643</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
-
-
         </div>
     </div>
 </body>
