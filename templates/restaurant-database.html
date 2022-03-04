@@ -55,23 +55,55 @@
 
                         </div>
                         <div class="button">
-                            <input type="submit" value="Add">
+                            <input name="food-form" type="submit" value="Add">
                         </div>
                     </form>
                 </div>
                 
                 <div class ="container-search">
                     <div class = "title">Search Food Menu</div>
-                    <form action="#">
+                    <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
-                                <span class="details">Seach Food</span>
-                                <input type="text" placeholder="Enter Food Name" required>
+                                <span class="details">Search Food</span>
+                                <input name="search" type="text" placeholder="Enter Food Name" required>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <caption>Search Results</caption>
+                                    <thead>
+                                        <tr class="head-row">
+                                            <th>Food ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Category</th>
+                                            <th>Calories</th>
+                                            <th>Cuisine</th>
+                                            <th>Price</th>
+                                            <th>Edit Food</th>
+                                            <th>Delete Food</th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody>
+                                        <tr class="body-row">
+                                            <td>{{ food_search.foodID }}</td>
+                                            <td>{{ food_search.foodName }}</td>
+                                            <td>{{ food_search.foodDescription }}</td>
+                                            <td>{{ food_search.foodCategory }}</td>
+                                            <td>{{ food_search.calories }}</td>
+                                            <td>{{ food_search.cuisine }}</td>
+                                            <td>{{ food_search.price }}</td>
+                                            <td class="edit">Edit</td>
+                                            <td class="delete">Delete</td>    
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>
                         <div class="button">
-                            <input type="submit" value="Search">
+                            <input name="food-search" type="submit" value="Search">
                         </div>
                     </form>
                 </div>
@@ -118,34 +150,40 @@
             <div class="tab">
                 <div class ="container">
                     <div class = "title">Add New Order</div>
-                    <form action="#">
+                    <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
                                 <span class="details">Customer ID</span>
-                                <input type="text" placeholder="Enter The customer ID" required>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Food</span>
-                                <input type="text" placeholder="Enter The Food" required>
+                                <select name="customerID">
+                                    {% for customer in customers%}
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    {% endfor %}
+                                </select>
+
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Progress</span>
-                                <input type="text" placeholder="Enter The Order Progress" required>
+                                <select name="orderProgress">
+                                    <option value="New">New</option>
+                                    <option value="Preparing">Preparing</option>
+                                    <option value="On the way">On the way</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Order Date</span>
-                                <input type="text" placeholder="Enter The Order Date" required>
+                                <input name="orderDate" type="date" required>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Total Price</span>
-                                <input type="text" placeholder="Enter The total price" required>
+                                <input name="totalPrice" type="text" placeholder="Enter The total price" required>
                             </div>
                         </div>
                         <div class="button">
-                            <input type="submit" value="Add">
+                            <input name="order-form" type="submit" value="Add">
                         </div>
                     </form>
                 </div>
@@ -186,30 +224,38 @@
             <div class="tab">
                 <div class ="container">
                     <div class = "title">Add New Order Item</div>
-                    <form action="#">
+                    <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
                                 <span class="details">Order ID</span>
-                                <input type="text" placeholder="Enter The Order ID" required>
+                                <select name="orderID">
+                                    {% for order in orders%}
+                                    <option value="{{ order.orderID }}">{{ order.orderID }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                             <div class="input-box">
                                 <span class="details">Food ID</span>
-                                <input type="text" placeholder="Enter The Food ID" required>
+                                <select name="foodID">
+                                    {% for food in foods%}
+                                    <option value="{{ food.foodID }}">{{ food.foodID }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Quantity</span>
-                                <input type="text" placeholder="Enter The Food Quantity" required>
+                                <input name="quantity" type="number" placeholder="Enter The Food Quantity" required>
                             </div>
 
                             <div class="input-box">
-                                <span class="details">Pice</span>
-                                <input type="text" placeholder="Enter The Total Price" required>
+                                <span class="details">Price</span>
+                                <input name="totalPrice" type="number" placeholder="Enter The Total Price" required>
                             </div>
 
                         </div>
                         <div class="button">
-                            <input type="submit" value="Add">
+                            <input name="items-form" type="submit" value="Add">
                         </div>
                     </form>
                 </div>
@@ -249,35 +295,42 @@
             <div class="tab">
                 <div class ="container">
                     <div class = "title">Add New Payment</div>
-                    <form action="#">
+                    <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
                                 <span class="details">Customer ID</span>
-                                <input type="text" placeholder="Enter The Customer ID" required>
+                                <select name="customerID">
+                                    {% for customer in customers%}
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                             <div class="input-box">
                                 <span class="details">Order ID</span>
-                                <input type="text" placeholder="Enter The Order ID" required>
+                                <select name="orderID">
+                                    {% for order in orders%}
+                                    <option value="{{ order.orderID }}">{{ order.orderID }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-
                             <div class="input-box">
                                 <span class="details">Date</span>
-                                <input type="text" placeholder="Enter The Payment Date" required>
+                                <input name="paymentDate" type="date" required>
                             </div>
-
                             <div class="input-box">
                                 <span class="details">Amount</span>
-                                <input type="text" placeholder="Enter The Total Amount" required>
+                                <input name="paymentAmount" type="number" placeholder="Enter The Total Amount" required>
                             </div>
-
                             <div class="input-box">
-                                <span class="details">Mathod</span>
-                                <input type="text" placeholder="Enter The Payment Method" required>
+                                <span class="details">Payment Method</span>
+                                <select name="paymentMethod">
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
                             </div>
-
                         </div>
                         <div class="button">
-                            <input type="submit" value="Add">
+                            <input name="payments-form" type="submit" value="Add">
                         </div>
                     </form>
                 </div>
@@ -303,9 +356,8 @@
                                 <td>{{ payment.customerID }}</td>
                                 <td>{{ payment.orderID }}</td>
                                 <td>{{ payment.paymentDate }}</td>
-                                <td class="amound">{{ payment.paymentAmount }}</td>
+                                <td class="amount">{{ payment.paymentAmount }}</td>
                                 <td>{{ payment.paymentMethod }}</td>
-                                <td></td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
@@ -321,36 +373,31 @@
             <div class="tab">
                 <div class ="container">
                     <div class = "title">Add New Customer</div>
-                    <form action="#">
+                    <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
                                 <span class="details">First Name</span>
-                                <input type="text" placeholder="Enter The first name" required>
+                                <input name="firstName" type="text" placeholder="Enter The first name" required>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Last Name</span>
-                                <input type="text" placeholder="Enter The last name" required>
+                                <input name="lastName" type="text" placeholder="Enter The last name" required>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Email</span>
-                                <input type="text" placeholder="Enter The Email" required>
+                                <input name="email" type="text" placeholder="Enter The Email" required>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Phone Number</span>
-                                <input type="text" placeholder="Enter The Phone Number" required>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">Address</span>
-                                <input type="text" placeholder="Choose The Address" required>
+                                <input name="phoneNumber" type="number" placeholder="Enter The Phone Number" required>
                             </div>
 
                         </div>
                         <div class="button">
-                            <input type="submit" value="Add">
+                            <input name="customers-form" type="submit" value="Add">
                         </div>
                     </form>
                 </div>
@@ -361,11 +408,11 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Customer ID</th>
-                                <th>Address ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email Address</th>
                                 <th>Phone Number</th>
+                                <th>Address ID</th>
                                 <th>Edit Customer</th>
                                 <th>Delete Customer</th>
                             </tr>
@@ -375,11 +422,11 @@
                             {% for customer in customers%}
                             <tr class="body-row">
                                 <td>{{ customer.customerID }}</td>
-                                <td>{{ customer.currentAddress }}</td>
                                 <td>{{ customer.firstName }}</td>
                                 <td>{{ customer.lastName }}</td>
                                 <td>{{ customer.email }}</td>
                                 <td>{{ customer.phoneNumber }}</td>
+                                <td>{{ customer.currentAddress }}</td>
                                 <td class="edit">Edit</td>
                                 <td class="delete">Delete</td>
                             </tr>
@@ -399,32 +446,36 @@
             <div class="tab">
                 <div class ="container">
                     <div class = "title">Add New Address</div>
-                    <form action="#">
+                    <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
                                 <span class="details">Customer ID</span>
-                                <input type="text" placeholder="Enter The Customer ID" required>
+                                <select name="customerID">
+                                    {% for customer in customers%}
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">City</span>
-                                <input type="text" placeholder="Enter The City" required>
+                                <input name="city" type="text" placeholder="Enter The City" required>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Street Name</span>
-                                <input type="text" placeholder="Enter The Street Name" required>
+                                <input name="streetName" type="text" placeholder="Enter The Street Name" required>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Street Number</span>
-                                <input type="text" placeholder="Enter The Street Number" required>
+                                <input name="streetNumber" type="number" placeholder="Enter The Street Number" required>
                             </div>
 
 
                         </div>
                         <div class="button">
-                            <input type="submit" value="Add">
+                            <input name="addresses-form" type="submit" value="Add">
                         </div>
                     </form>
                 </div>

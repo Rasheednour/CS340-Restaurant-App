@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from audioop import add
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -22,8 +22,10 @@ def home():
     # return "done"
     return render_template("home.html")
 
+food_search = ({"foodID": ""}, {"foodName": ""}, {"foodDescription": ""}, {"foodCategory": ""}, {"calories": ""}, {"cuisine": ""}, {"price": ""})
+
 @app.route("/restauarant-database")
-def restaurant_database():
+def restaurant_database(food_search=food_search):
 
     cur = mysql.connection.cursor()
 
@@ -45,20 +47,70 @@ def restaurant_database():
     cur.execute('''SELECT * from payments''')
     payments = cur.fetchall()
 
-    return render_template("restaurant-database.html", foods=foods, orders=orders, order_items=order_items, customers=customers, addresses=addresses, payments=payments)
+    
+
+    return render_template("restaurant-database.html", foods=foods, orders=orders, order_items=order_items, customers=customers, addresses=addresses, payments=payments, food_search=food_search)
 
 @app.route("/restauarant-database", methods=['POST'])
 def database_post():
     cur = mysql.connection.cursor()
     data = request.form
-    values = (data["name"], data["description"], data["category"], data["calories"], data["cuisine"], data["price"])
-    sql = ('''INSERT INTO foods (foodName, foodDescription, foodCategory, calories, cuisine, price)
-              VALUES (%s, %s, %s, %s, %s, %s)''')
-    cur.execute(sql, values)
-    mysql.connection.commit()
-    return restaurant_database()
 
-    
+    # check if it's a search post method
+    if 'food-form' in data:
+        values = (data["name"], data["description"], data["category"], data["calories"], data["cuisine"], data["price"])
+        sql = ('''INSERT INTO foods (foodName, foodDescription, foodCategory, calories, cuisine, price)
+                VALUES (%s, %s, %s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        return restaurant_database()
+
+    elif 'search-form' in data:
+        sql = (''' SELECT * FROM foods WHERE foods.foodName LIKE (%s) ''')
+        search = data["search"]
+        cur.execute(sql, [search])
+        search_result = cur.fetchall()
+        return restaurant_database(food_search=search_result)
+
+    elif 'order-form' in data:
+        values = (data["customerID"], data["orderProgress"], data["totalPrice"], data["orderDate"])
+        sql = ('''INSERT INTO orders (customerID, orderProgress, totalPrice, orderDate)
+                VALUES (%s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        return restaurant_database()
+
+    elif 'items-form' in data:
+        values = (data["orderID"], data["foodID"], data["quantity"], data["totalPrice"])
+        sql = ('''INSERT INTO orderitems (orderID, foodID, quantity, totalPrice)
+                VALUES (%s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        return restaurant_database()
+
+    elif 'payments-form' in data:
+        values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
+        sql = ('''INSERT INTO payments (customerID, orderID, paymentDate, paymentAmount, paymentMethod)
+                VALUES (%s, %s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        return restaurant_database()
+
+    elif 'customers-form' in data:
+        values = (data["firstName"], data["lastName"], data["email"], data["phoneNumber"])
+        sql = ('''INSERT INTO customers (firstName, lastName, email, phoneNumber)
+                VALUES (%s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        return restaurant_database()
+
+    elif 'addresses-form' in data:
+        values = (data["city"], data["streetName"], data["streetNumber"])
+        sql = ('''INSERT INTO addresses (city, streetName, streetNumber)
+                VALUES (%s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        return restaurant_database()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=5000)
