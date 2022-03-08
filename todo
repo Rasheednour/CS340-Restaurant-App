@@ -1,0 +1,30 @@
+change the html pages into a resturant management website
+as per the feedback
+
+pages can be:
+
+meals.html: to track meals available
+  add meal
+  delete meal
+  update meal
+
+customers.html: to track customer
+
+  customer list
+  payment method
+  payment status
+  customer address/basic info
+
+manageOrders.html: to control orders
+
+  current orders
+  cancel order
+  update order
+
+
+
+
+
+
+
+

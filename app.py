@@ -35,7 +35,7 @@ def restaurant_database(food_search=food_search):
     cur.execute('''SELECT * from orders''')
     orders = cur.fetchall()
 
-    cur.execute('''SELECT * from orderitems''')
+    cur.execute('''SELECT * from orderItems''')
     order_items = cur.fetchall()
 
     cur.execute('''SELECT * from customers''')
