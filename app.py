@@ -3,15 +3,25 @@ from audioop import add
 from flask import Flask, render_template, request, flash
 from flask_mysqldb import MySQL
 
+
+# initializing flask
 app = Flask(__name__)
 
+# database settings
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '1234'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_DB'] = 'global_foods'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
+# initializnig mysql object
 mysql = MySQL(app)
+
+# json carrying food options
+food_search = ({"foodID": ""}, {"foodName": ""}, 
+                {"foodDescription": ""}, {"foodCategory": ""}, 
+                {"calories": ""}, {"cuisine": ""}, {"price": ""})
+
 # main page
 @app.route("/")
 def home():
@@ -22,8 +32,8 @@ def home():
     # return "done"
     return render_template("home.html")
 
-food_search = ({"foodID": ""}, {"foodName": ""}, {"foodDescription": ""}, {"foodCategory": ""}, {"calories": ""}, {"cuisine": ""}, {"price": ""})
 
+# listing the restrant database
 @app.route("/restauarant-database")
 def restaurant_database(food_search=food_search):
 
@@ -47,10 +57,12 @@ def restaurant_database(food_search=food_search):
     cur.execute('''SELECT * from payments''')
     payments = cur.fetchall()
 
-    
+    return render_template("restaurant-database.html", foods=foods, orders=orders, 
+                                     order_items=order_items, customers=customers, 
+                                           addresses=addresses, payments=payments, 
+                                     food_search=food_search)
 
-    return render_template("restaurant-database.html", foods=foods, orders=orders, order_items=order_items, customers=customers, addresses=addresses, payments=payments, food_search=food_search)
-
+# processing POST request on 'resturant database' page
 @app.route("/restauarant-database", methods=['POST'])
 def database_post():
     cur = mysql.connection.cursor()
@@ -113,4 +125,6 @@ def database_post():
         return restaurant_database()
 
 if __name__ == "__main__":
+
+    # starting flask listening socket
     app.run(host='0.0.0.0', debug=True, port=5000)
