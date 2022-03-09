@@ -1,7 +1,8 @@
 body {
-    background-image: url("../img/home-background3.png");
+    background-image: url("../img/db-background.png");
     background-position: top center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     font-family: 'Courier New', Courier, monospace;
     width: 100%;
@@ -14,7 +15,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     max-width: 1600px;
-    margin: 200px auto;
+    margin: 50px auto;
     padding: 25px;
 }
 
@@ -25,6 +26,7 @@ body {
 .mytabs label {
     padding: 25px;
     background: #e2e2e2;
+    font-size: 20px;
     font-weight: bold;
     border: 0.5px solid rgb(204, 146, 146);
     border-bottom: none;
@@ -68,7 +70,7 @@ body {
 .container-search {
     max-width: 1500px;
     width: 100%;
-    background:rgb(255, 255, 255);
+    background:rgba(255, 255, 255, 0.6);
     padding: 25px 30px;
     padding-bottom: -5px;
     border-radius: 5px;
@@ -77,7 +79,7 @@ body {
 .container {
     max-width: 1500px;
     width: 100%;
-    background:rgb(255, 255, 255);
+    background:rgba(255, 255, 255, 0.6);
     padding: 25px 30px;
     padding-bottom: -5px;
     border-radius: 5px;
@@ -107,13 +109,16 @@ body {
 
 form .order-details .input-box{
     margin-bottom: 15px;
-    width: calc(40% / 2 - 20px);
+    padding-left: 10px;
+    width: 40%;
+    justify-content: center;
+    margin-left: 28%;
 }
 
 
-form .order-details .input-box details{
+form .order-details .input-box .details{
     display: block;
-    font-weight: 500;
+    font-weight: 800;
     margin-bottom: 5px;
 }
 
@@ -184,8 +189,15 @@ form .button input:hover{
 
 /*---------------------table styling-------------------------*/
 
+.search-table-container{
+    background-color: rgba(255, 255, 255, 0);
+    padding-bottom: 2rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
 .table-container{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
     padding-bottom: 2rem;
     border-radius: 4px;
     margin-top: 1rem;
