@@ -41,7 +41,14 @@ def restaurant_database():
         cur = mysql.connection.cursor()
         data = request.form
 
-        # check if it's a search post method
+        if 'delete-food' in data:
+            values = (data["foodID"],)
+            sql = ('''DELETE FROM orderItems WHERE foodID = (%s)''')
+            cur.execute(sql, values)
+            sql = ('''DELETE FROM foods WHERE foodID = (%s)''')
+            cur.execute(sql, values)
+            mysql.connection.commit()
+
         if 'food-form' in data:
             values = (data["name"], data["description"], data["category"], data["calories"], data["cuisine"], data["price"])
             sql = ('''INSERT INTO foods (foodName, foodDescription, foodCategory, calories, cuisine, price)
@@ -121,68 +128,65 @@ def restaurant_database():
                                            addresses=addresses, payments=payments, 
                                      food_search=food_search)
 
-# # processing POST request on 'resturant database' page
-# @app.route("/restauarant-database", methods=['POST'])
-# def database_post():
-#     cur = mysql.connection.cursor()
-#     data = request.form
 
-#     # check if it's a search post method
-#     if 'food-form' in data:
-#         values = (data["name"], data["description"], data["category"], data["calories"], data["cuisine"], data["price"])
-#         sql = ('''INSERT INTO foods (foodName, foodDescription, foodCategory, calories, cuisine, price)
-#                 VALUES (%s, %s, %s, %s, %s, %s)''')
-#         cur.execute(sql, values)
-#         mysql.connection.commit()
-#         return restaurant_database()
+@app.route("/restauarant-database", methods=['DELETE'])
+def delete_row():
+    
+    cur = mysql.connection.cursor()
+    data = request.form
+    print("did i get here?")
 
-#     elif 'search-form' in data:
-#         sql = (''' SELECT * FROM foods WHERE foodName = (%s) ''')
-#         search = data["search"]
-#         cur.execute(sql, [search])
-#         search_result = cur.fetchall()
-#         food_search = search_result
-#         return restaurant_database()
+    if 'delete-food' in data:
+        values = (data["delete-food"])
+        print("values are: ", values)
+        # sql = ('''DELETE FROM foods WHERE foodID = (%s)''')
+        # cur.execute(sql, values)
+        # mysql.connection.commit()
+        restaurant_database()
 
-#     elif 'order-form' in data:
-#         values = (data["customerID"], data["orderProgress"], data["totalPrice"], data["orderDate"])
-#         sql = ('''INSERT INTO orders (customerID, orderProgress, totalPrice, orderDate)
-#                 VALUES (%s, %s, %s, %s)''')
-#         cur.execute(sql, values)
-#         mysql.connection.commit()
-#         return restaurant_database()
+    elif 'delete-order' in data:
+        values = (data["customerID"], data["orderProgress"], data["totalPrice"], data["orderDate"])
+        sql = ('''DELETE FROM orders (customerID, orderProgress, totalPrice, orderDate)
+                VALUES (%s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        restaurant_database()
 
-#     elif 'items-form' in data:
-#         values = (data["orderID"], data["foodID"], data["quantity"], data["totalPrice"])
-#         sql = ('''INSERT INTO orderitems (orderID, foodID, quantity, totalPrice)
-#                 VALUES (%s, %s, %s, %s)''')
-#         cur.execute(sql, values)
-#         mysql.connection.commit()
-#         return restaurant_database()
+    elif 'delete-item' in data:
+        values = (data["orderID"], data["foodID"], data["quantity"], data["totalPrice"])
+        sql = ('''DELETE FROM orderitems (orderID, foodID, quantity, totalPrice)
+                VALUES (%s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        restaurant_database()
 
-#     elif 'payments-form' in data:
-#         values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
-#         sql = ('''INSERT INTO payments (customerID, orderID, paymentDate, paymentAmount, paymentMethod)
-#                 VALUES (%s, %s, %s, %s, %s)''')
-#         cur.execute(sql, values)
-#         mysql.connection.commit()
-#         return restaurant_database()
+    elif 'delete-payment' in data:
+        values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
+        sql = ('''DELETE FROM payments (customerID, orderID, paymentDate, paymentAmount, paymentMethod)
+                VALUES (%s, %s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        restaurant_database()
 
-#     elif 'customers-form' in data:
-#         values = (data["firstName"], data["lastName"], data["email"], data["phoneNumber"])
-#         sql = ('''INSERT INTO customers (firstName, lastName, email, phoneNumber)
-#                 VALUES (%s, %s, %s, %s)''')
-#         cur.execute(sql, values)
-#         mysql.connection.commit()
-#         return restaurant_database()
+    elif 'delete-customer' in data:
+        values = (data["firstName"], data["lastName"], data["email"], data["phoneNumber"])
+        sql = ('''DELETE FROM customers (firstName, lastName, email, phoneNumber)
+                VALUES (%s, %s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        restaurant_database()
 
-#     elif 'addresses-form' in data:
-#         values = (data["city"], data["streetName"], data["streetNumber"])
-#         sql = ('''INSERT INTO addresses (city, streetName, streetNumber)
-#                 VALUES (%s, %s, %s)''')
-#         cur.execute(sql, values)
-#         mysql.connection.commit()
-#         return restaurant_database()
+    elif 'delete-address' in data:
+        values = (data["city"], data["streetName"], data["streetNumber"])
+        sql = ('''DELETE FROM addresses (city, streetName, streetNumber)
+                VALUES (%s, %s, %s)''')
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        restaurant_database()
+
+
+
+
 
 if __name__ == "__main__":
 

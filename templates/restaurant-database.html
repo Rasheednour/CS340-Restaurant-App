@@ -127,16 +127,18 @@
                         <tbody>
                             {% for food in foods%}
                             <tr class="body-row">
-                                <form>
-                                <td name="foodID">{{ food.foodID }}</td>
+                                <form method="POST">
+                                <td><input class="id-input" name="foodID" value="{{ food.foodID }}" readonly></td>
                                 <td>{{ food.foodName }}</td>
                                 <td>{{ food.foodDescription }}</td>
                                 <td>{{ food.foodCategory }}</td>
                                 <td>{{ food.calories }}</td>
                                 <td>{{ food.cuisine }}</td>
                                 <td>{{ food.price }}</td>
-                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
-                                <td class="delete"><button class="delete-button" name="delete" type="submit" value="delete">Delete</button></td>
+                                <td class="edit"><button class="edit-button" name="edit" value="Edit">Edit</button></td>
+                                <td class="delete"> 
+                                    <input class="delete-button" name="delete-food" type="submit" value="Delete">
+                                </td>
                                 </form>
                             </tr>
                             {% endfor %}
@@ -210,8 +212,8 @@
                                 <td>{{ order.orderProgress }}</td>
                                 <td>{{ order.orderDate }}</td>
                                 <td class="amount">{{ order.totalPrice }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete-order" type="submit" value="delete">Delete</button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -280,8 +282,8 @@
                                 <td>{{ item.foodID }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td class="amount">{{ item.totalPrice }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete-item" type="submit" value="delete">Delete</button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -359,8 +361,8 @@
                                 <td>{{ payment.paymentDate }}</td>
                                 <td class="amount">{{ payment.paymentAmount }}</td>
                                 <td>{{ payment.paymentMethod }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete-payment" type="submit" value="delete">Delete</button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -428,8 +430,8 @@
                                 <td>{{ customer.email }}</td>
                                 <td>{{ customer.phoneNumber }}</td>
                                 <td>{{ customer.currentAddress }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete-customer" type="submit" value="delete">Delete</button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -502,8 +504,8 @@
                                 <td>{{ address.city }}</td>
                                 <td>{{ address.streetName }}</td>
                                 <td>{{ address.streetNumber }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete-address" type="submit" value="delete">Delete</button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
