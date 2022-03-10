@@ -35,6 +35,8 @@ def home():
 @app.route("/restauarant-database", methods=['POST', 'GET'])
 def restaurant_database():
     food_search = ()
+    link = "restaurant-database.html"
+
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         data = request.form
@@ -60,6 +62,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
+            link = "/pages/orders.html"
 
         elif 'items-form' in data:
             values = (data["orderID"], data["foodID"], data["quantity"], data["totalPrice"])
@@ -67,6 +70,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
+            link = "/pages/items.html"
 
         elif 'payments-form' in data:
             values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
@@ -74,6 +78,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
+            link = "/pages/payments.html"
 
         elif 'customers-form' in data:
             values = (data["firstName"], data["lastName"], data["email"], data["phoneNumber"])
@@ -81,6 +86,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
+            link = "/pages/customers.html"
 
         elif 'addresses-form' in data:
             values = (data["city"], data["streetName"], data["streetNumber"])
@@ -88,6 +94,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
+            link = "/pages/addresses.html"
 
     print("food search is", food_search)
     cur = mysql.connection.cursor()
@@ -109,7 +116,7 @@ def restaurant_database():
     cur.execute('''SELECT * from payments''')
     payments = cur.fetchall()
 
-    return render_template("restaurant-database.html", foods=foods, orders=orders, 
+    return render_template(link, foods=foods, orders=orders, 
                                      order_items=order_items, customers=customers, 
                                            addresses=addresses, payments=payments, 
                                      food_search=food_search)

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Foods</title>
+    <link rel="stylesheet" href="../static/css/database.css">
+</head>
+<body>
+    <div class="page-background">
+        <div class="mytabs">
+            
+            <input type="radio" id="foods" name="mytabs">
+            <label for="foods">Foods</label>
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Food</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Name</span>
+                                <input name="name" type="text" placeholder="Enter The Food Name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Description</span>
+                                <input name="description" type="text" placeholder="Enter The Food Description" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Category</span>
+                                <select name="category">
+                                    <option value="appetizers">Appetizers</option>
+                                    <option value="appetizers">Salads</option>
+                                    <option value="main dishes">Main Dishes</option>
+                                    <option value="drinks">Drinks</option>
+                                    <option value="desserts">Desserts</option>
+                                </select>  
+
+
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Calories</span>
+                                <input name="calories" type="number" placeholder="Enter The Calories" required>
+                            </div>
+                            
+                            <div class="input-box">
+                                <span class="details">Cuisine</span>
+                                <input name="cuisine" type="text" placeholder="Enter The Cuisine" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Price</span>
+                                <input name="price" type="number" placeholder="Enter The Price" required>
+                            </div>
+
+
+                        </div>
+                        <div class="button">
+                            <input name="food-form" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class ="container-search">
+                    <div class = "title">Search Food Menu</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Search Food</span>
+                                <input name="search" type="text" placeholder="Enter Food Name" required>
+                            </div>
+                            <div class="search-table-container">
+                                <table>
+                                    <caption>Search Results</caption>
+                                    <thead>
+                                        <tr class="head-row">
+                                            <th>Food ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Category</th>
+                                            <th>Calories</th>
+                                            <th>Cuisine</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody>
+                                        {% for food in food_search%}
+                                        <tr class="body-row">
+                                            <td>{{ food.foodID }}</td>
+                                            <td>{{ food.foodName }}</td>
+                                            <td>{{ food.foodDescription }}</td>
+                                            <td>{{ food.foodCategory }}</td>
+                                            <td>{{ food.calories }}</td>
+                                            <td>{{ food.cuisine }}</td>
+                                            <td>{{ food.price }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input name="search-form" type="submit" value="Search">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <caption>Food Menu</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Food ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Calories</th>
+                                <th>Cuisine</th>
+                                <th>Price</th>
+                                <th>Edit Food</th>
+                                <th>Delete Food</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for food in foods%}
+                            <tr class="body-row">
+                                <form>
+                                <td name="foodID">{{ food.foodID }}</td>
+                                <td>{{ food.foodName }}</td>
+                                <td>{{ food.foodDescription }}</td>
+                                <td>{{ food.foodCategory }}</td>
+                                <td>{{ food.calories }}</td>
+                                <td>{{ food.cuisine }}</td>
+                                <td>{{ food.price }}</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete" type="submit" value="delete">Delete</button></td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <input type="radio" id="orders" name="mytabs">
+            <label for="orders">Orders</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Order</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Customer ID</span>
+                                <select name="customerID">
+                                    {% for customer in customers%}
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Progress</span>
+                                <select name="orderProgress">
+                                    <option value="New">New</option>
+                                    <option value="Preparing">Preparing</option>
+                                    <option value="On the way">On the way</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Order Date</span>
+                                <input name="orderDate" type="date" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Total Price</span>
+                                <input name="totalPrice" type="text" placeholder="Enter The total price" required>
+                            </div>
+                        </div>
+                        <div class="button">
+                            <input name="order-form" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <caption>Order List</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Order ID</th>
+                                <th>Customer ID</th>
+                                <th>Order Progress</th>
+                                <th>Order Date</th>
+                                <th>Total Price</th>
+                                <th>Edit Order</th>
+                                <th>Delete Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders%}
+                            <tr class="body-row">
+                                <td>{{ order.orderID }}</td>
+                                <td>{{ order.customerID }}</td>
+                                <td>{{ order.orderProgress }}</td>
+                                <td>{{ order.orderDate }}</td>
+                                <td class="amount">{{ order.totalPrice }}</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <input type="radio" id="order-items" name="mytabs">
+            <label for="order-items">Order Items</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Order Item</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Order ID</span>
+                                <select name="orderID">
+                                    {% for order in orders%}
+                                    <option value="{{ order.orderID }}">{{ order.orderID }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Food ID</span>
+                                <select name="foodID">
+                                    {% for food in foods%}
+                                    <option value="{{ food.foodID }}">{{ food.foodID }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Quantity</span>
+                                <input name="quantity" type="number" placeholder="Enter The Food Quantity" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Price</span>
+                                <input name="totalPrice" type="number" placeholder="Enter The Total Price" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input name="items-form" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <caption>Order Items List</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Order ID</th>
+                                <th>Food ID</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Edit Item</th>
+                                <th>Delete Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order_items%}
+                            <tr class="body-row">
+                                <td>{{ item.orderID }}</td>
+                                <td>{{ item.foodID }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td class="amount">{{ item.totalPrice }}</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <input type="radio" id="payments" name="mytabs">
+            <label for="payments">Payments</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Payment</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Customer ID</span>
+                                <select name="customerID">
+                                    {% for customer in customers%}
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Order ID</span>
+                                <select name="orderID">
+                                    {% for order in orders%}
+                                    <option value="{{ order.orderID }}">{{ order.orderID }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Date</span>
+                                <input name="paymentDate" type="date" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Amount</span>
+                                <input name="paymentAmount" type="number" placeholder="Enter The Total Amount" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Payment Method</span>
+                                <select name="paymentMethod">
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="button">
+                            <input name="payments-form" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <caption>Payments</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Payment ID</th>
+                                <th>Customer ID</th>
+                                <th>Order ID</th>
+                                <th>Payment Date</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Edit Item</th>
+                                <th>Delete Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for payment in payments%}
+                            <tr class="body-row">
+                                <td>{{ payment.paymentID }}</td>
+                                <td>{{ payment.customerID }}</td>
+                                <td>{{ payment.orderID }}</td>
+                                <td>{{ payment.paymentDate }}</td>
+                                <td class="amount">{{ payment.paymentAmount }}</td>
+                                <td>{{ payment.paymentMethod }}</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <input type="radio" id="customers" name="mytabs">
+            <label for="customers">Customers</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Customer</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">First Name</span>
+                                <input name="firstName" type="text" placeholder="Enter The first name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Last Name</span>
+                                <input name="lastName" type="text" placeholder="Enter The last name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Email</span>
+                                <input name="email" type="text" placeholder="Enter The Email" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Phone Number</span>
+                                <input name="phoneNumber" type="number" placeholder="Enter The Phone Number" required>
+                            </div>
+
+                        </div>
+                        <div class="button">
+                            <input name="customers-form" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <caption>Customer Base</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Customer ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Phone Number</th>
+                                <th>Address ID</th>
+                                <th>Edit Customer</th>
+                                <th>Delete Customer</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for customer in customers%}
+                            <tr class="body-row">
+                                <td>{{ customer.customerID }}</td>
+                                <td>{{ customer.firstName }}</td>
+                                <td>{{ customer.lastName }}</td>
+                                <td>{{ customer.email }}</td>
+                                <td>{{ customer.phoneNumber }}</td>
+                                <td>{{ customer.currentAddress }}</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            
+            <input type="radio" id="addresses" name="mytabs" checked="checked">
+            <label for="addresses">Addresses</label>
+
+            <div class="tab">
+                <div class ="container">
+                    <div class = "title">Add New Address</div>
+                    <form method="POST">
+                        <div class="order-details">
+                            <div class="input-box">
+                                <span class="details">Customer ID</span>
+                                <select name="customerID">
+                                    {% for customer in customers%}
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">City</span>
+                                <input name="city" type="text" placeholder="Enter The City" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Street Name</span>
+                                <input name="streetName" type="text" placeholder="Enter The Street Name" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Street Number</span>
+                                <input name="streetNumber" type="number" placeholder="Enter The Street Number" required>
+                            </div>
+
+
+                        </div>
+                        <div class="button">
+                            <input name="addresses-form" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <caption>Customer Addresses</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Address ID</th>
+                                <th>City</th>
+                                <th>Street Name</th>
+                                <th>Street Number</th>
+                                <th>Edit Address</th>
+                                <th>Delete Address</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for address in addresses%}
+                            <tr class="body-row">
+                                <td>{{ address.addressID }}</td>
+                                <td>{{ address.city }}</td>
+                                <td>{{ address.streetName }}</td>
+                                <td>{{ address.streetNumber }}</td>
+                                <td class="edit">Edit</td>
+                                <td class="delete">Delete</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
