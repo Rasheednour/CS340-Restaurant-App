@@ -29,6 +29,7 @@
                                 <span class="details">Category</span>
                                 <select name="category">
                                     <option value="appetizers">Appetizers</option>
+                                    <option value="appetizers">Salads</option>
                                     <option value="main dishes">Main Dishes</option>
                                     <option value="drinks">Drinks</option>
                                     <option value="desserts">Desserts</option>
@@ -126,15 +127,17 @@
                         <tbody>
                             {% for food in foods%}
                             <tr class="body-row">
-                                <td>{{ food.foodID }}</td>
+                                <form>
+                                <td name="foodID">{{ food.foodID }}</td>
                                 <td>{{ food.foodName }}</td>
                                 <td>{{ food.foodDescription }}</td>
                                 <td>{{ food.foodCategory }}</td>
                                 <td>{{ food.calories }}</td>
                                 <td>{{ food.cuisine }}</td>
                                 <td>{{ food.price }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"><button class="delete-button" name="delete" type="submit" value="delete">Delete</button></td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>
