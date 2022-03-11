@@ -105,15 +105,24 @@ def restaurant_database():
                     VALUES (%s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
-            link = "/pages/orders.html"
+            # link = "/pages/orders.html"
 
         elif 'items-form' in data:
-            values = (data["orderID"], data["foodID"], data["quantity"], data["totalPrice"])
+            
+            id = (data["foodID"],)
+            sql = ('''SELECT price FROM Foods WHERE foodID = (%s)''')
+            cur.execute(sql, id)
+            result = cur.fetchall()
+            quantity = float(data["quantity"])
+            total = result[0]["price"] * quantity
+
+            values = (data["orderID"], data["foodID"], data["quantity"], total)
+
             sql = ('''INSERT INTO OrderItems (orderID, foodID, quantity, totalPrice)
                     VALUES (%s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
-            link = "/pages/items.html"
+            # link = "/pages/items.html"
 
         elif 'payments-form' in data:
             values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
@@ -121,7 +130,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
-            link = "/pages/payments.html"
+            # link = "/pages/payments.html"
 
         elif 'customers-form' in data:
             values = (data["firstName"], data["lastName"], data["email"], data["phoneNumber"])
@@ -129,7 +138,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
-            link = "/pages/customers.html"
+            # link = "/pages/customers.html"
 
         elif 'addresses-form' in data:
             values = (data["city"], data["streetName"], data["streetNumber"])
@@ -137,7 +146,7 @@ def restaurant_database():
                     VALUES (%s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
-            link = "/pages/addresses.html"
+            # link = "/pages/addresses.html"
 
     cur = mysql.connection.cursor()
 
