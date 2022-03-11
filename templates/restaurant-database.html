@@ -298,14 +298,6 @@
                     <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
-                                <span class="details">Customer ID</span>
-                                <select name="customerID">
-                                    {% for customer in customers%}
-                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="input-box">
                                 <span class="details">Order ID</span>
                                 <select name="orderID">
                                     {% for order in orders%}
@@ -316,10 +308,6 @@
                             <div class="input-box">
                                 <span class="details">Date</span>
                                 <input name="paymentDate" type="date" required>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Amount</span>
-                                <input name="paymentAmount" type="number" placeholder="Enter The Total Amount" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">Payment Method</span>

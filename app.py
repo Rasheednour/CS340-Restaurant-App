@@ -141,7 +141,19 @@ def restaurant_database():
             # link = "/pages/items.html"
 
         elif 'payments-form' in data:
-            values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
+            or_id = (data["orderID"],)
+            sql = (''' SELECT totalPrice FROM Orders WHERE orderID = (%s) ''')
+            cur.execute(sql, or_id)
+            result = cur.fetchall()
+            payment_amount = result[0]["totalPrice"]
+
+            sql = (''' SELECT customerID FROM Orders WHERE orderID = (%s) ''')
+            cur.execute(sql, or_id)
+            result = cur.fetchall()
+            customer_id = result[0]["customerID"]
+
+
+            values = (customer_id, data["orderID"], data["paymentDate"], payment_amount, data["paymentMethod"])
             sql = ('''INSERT INTO Payments (customerID, orderID, paymentDate, paymentAmount, paymentMethod)
                     VALUES (%s, %s, %s, %s, %s)''')
             cur.execute(sql, values)
