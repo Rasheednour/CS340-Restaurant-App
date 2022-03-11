@@ -210,13 +210,22 @@
                         <tbody>
                             {% for order in orders%}
                             <tr class="body-row">
-                                <td>{{ order.orderID }}</td>
+                                <form method="POST">
+                                <input type="hidden" name="table" value="orders" />
+                                <input type="hidden" name="idType" value="orderID" />
+
+                                <input type="hidden" name="orderID" value={{ order.orderID }}>
+                                <td name="orderID"> {{ order.orderID }}</td> </input>
+
+
                                 <td>{{ order.customerID }}</td>
                                 <td>{{ order.orderProgress }}</td>
                                 <td>{{ order.orderDate }}</td>
                                 <td class="amount">{{ order.totalPrice }}</td>
                                 <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+
+                                <td class="delete"><button class="delete-button" type="submit" name="delete" >Delete</button></td> 
+                                </form>                               
                             </tr>
                             {% endfor %}
                         </tbody>

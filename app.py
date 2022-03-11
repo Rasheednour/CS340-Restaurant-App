@@ -54,7 +54,7 @@ def process_request():
         elif 'search-form' in data:
             query= (''' SELECT * FROM foods WHERE foodName = (%s) ''')
             search = data["search"]
-            db_instance.execute(sql, [search])
+            db_instance.execute(query, [search])
             search_result = db_instance.fetchall()
             food_search = search_result
 
@@ -62,15 +62,15 @@ def process_request():
             values = (data["customerID"], data["orderProgress"], data["totalPrice"], data["orderDate"])
             query= ('''INSERT INTO orders (customerID, orderProgress, totalPrice, orderDate)
                     VALUES (%s, %s, %s, %s)''')
-            db_instance.execute(sql, values)
+            db_instance.execute(query, values)
             mysql.connection.commit()
             link = "/pages/orders.html"
 
         elif 'insert-items-form' in data:
             values = (data["orderID"], data["foodID"], data["quantity"], data["totalPrice"])
-            query= ('''INSERT INTO orderitems (orderID, foodID, quantity, totalPrice)
+            query = ('''INSERT INTO orderitems (orderID, foodID, quantity, totalPrice)
                     VALUES (%s, %s, %s, %s)''')
-            db_instance.execute(sql, values)
+            db_instance.execute(query, values)
             mysql.connection.commit()
             link = "/pages/items.html"
 
@@ -78,7 +78,7 @@ def process_request():
             values = (data["customerID"], data["orderID"], data["paymentDate"], data["paymentAmount"], data["paymentMethod"])
             query= ('''INSERT INTO payments (customerID, orderID, paymentDate, paymentAmount, paymentMethod)
                     VALUES (%s, %s, %s, %s, %s)''')
-            db_instance.execute(sql, values)
+            db_instance.execute(query, values)
             mysql.connection.commit()
             link = "/pages/payments.html"
 
@@ -86,7 +86,7 @@ def process_request():
             values = (data["firstName"], data["lastName"], data["email"], data["phoneNumber"])
             query= ('''INSERT INTO customers (firstName, lastName, email, phoneNumber)
                     VALUES (%s, %s, %s, %s)''')
-            db_instance.execute(sql, values)
+            db_instance.execute(query, values)
             mysql.connection.commit()
             link = "/pages/customers.html"
 
@@ -94,7 +94,7 @@ def process_request():
             values = (data["city"], data["streetName"], data["streetNumber"])
             query= ('''INSERT INTO addresses (city, streetName, streetNumber)
                     VALUES (%s, %s, %s)''')
-            db_instance.execute(sql, values)
+            db_instance.execute(query, values)
             mysql.connection.commit()
             link = "/pages/addresses.html"
 
