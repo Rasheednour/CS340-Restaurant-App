@@ -381,9 +381,8 @@
                                     <input type="hidden" name="idType" value="paymentID" />
     
                                     <input type="hidden" name="paymentID" value={{ payment.paymentID }}>
-                                    <td name="orderID"> {{ payment.paymentID }}</td> </input>
+                                    <td name="paymentID"> {{ payment.paymentID }}</td> </input>
 
-                                <td>{{ payment.customerID }}</td>
                                 <td>{{ payment.orderID }}</td>
                                 <td>{{ payment.paymentDate }}</td>
                                 <td class="amount">{{ payment.paymentAmount }}</td>
@@ -453,14 +452,23 @@
                         <tbody>
                             {% for customer in customers%}
                             <tr class="body-row">
-                                <td>{{ customer.customerID }}</td>
+
+                                <form method="POST">
+                                    <input type="hidden" name="table" value="customers" />
+                                    <input type="hidden" name="idType" value="customerID" />
+    
+                                    <input type="hidden" name="customerID" value={{ customer.customerID }}>
+                                    <td name="customerID"> {{ customer.customerID }}</td> </input>
+
                                 <td>{{ customer.firstName }}</td>
                                 <td>{{ customer.lastName }}</td>
                                 <td>{{ customer.email }}</td>
                                 <td>{{ customer.phoneNumber }}</td>
                                 <td>{{ customer.currentAddress }}</td>
                                 <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+
+                                <td class="delete"><button class="delete-button" type="submit" name="delete" >Delete</button></td> 
+                                </form>    
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -529,12 +537,23 @@
                         <tbody>
                             {% for address in addresses%}
                             <tr class="body-row">
-                                <td>{{ address.addressID }}</td>
+
+
+                                <form method="POST">
+                                    <input type="hidden" name="table" value="addresses" />
+                                    <input type="hidden" name="idType" value="addressID" />
+    
+                                    <input type="hidden" name="addressID" value={{ address.addressID }}>
+                                    <td name="addressID"> {{ address.addressID }}</td> </input>                                
+
                                 <td>{{ address.city }}</td>
                                 <td>{{ address.streetName }}</td>
                                 <td>{{ address.streetNumber }}</td>
                                 <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+
+                                <td class="delete"><button class="delete-button" type="submit" name="delete" >Delete</button></td> 
+                                </form>  
+
                             </tr>
                             {% endfor %}
                         </tbody>
