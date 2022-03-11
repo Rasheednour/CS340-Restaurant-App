@@ -100,9 +100,9 @@ def restaurant_database():
             food_search = search_result
 
         elif 'order-form' in data:
-            values = (data["customerID"], data["orderProgress"], data["totalPrice"], data["orderDate"])
-            sql = ('''INSERT INTO Orders (customerID, orderProgress, totalPrice, orderDate)
-                    VALUES (%s, %s, %s, %s)''')
+            values = (data["customerID"], data["orderProgress"], data["orderDate"])
+            sql = ('''INSERT INTO Orders (customerID, orderProgress, orderDate)
+                    VALUES (%s, %s, %s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
             link = "/pages/orders.html"
