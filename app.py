@@ -169,10 +169,29 @@ def restaurant_database():
             # link = "/pages/customers.html"
 
         elif 'addresses-form' in data:
-            values = (data["city"], data["streetName"], data["streetNumber"])
-            sql = ('''INSERT INTO Addresses (city, streetName, streetNumber)
-                    VALUES (%s, %s, %s)''')
+            
+
+            
+
+            values = (data["customerID"], data["city"], data["streetName"], data["streetNumber"])
+            sql = ('''INSERT INTO Addresses (customerID, city, streetName, streetNumber)
+                    VALUES (%s, %s, %s, %s)''')
             cur.execute(sql, values)
+
+            customer_id = (data["customerID"],)
+
+            sql = ('''SELECT max(addressID) as addressID FROM Addresses WHERE addressID IN (SELECT addressID FROM Addresses WHERE customerID = (%s)) ''')
+
+            cur.execute(sql, customer_id)
+
+            result = cur.fetchall()
+            print("address id is", result)
+            address_id = result[0]["addressID"]
+
+            sql = (''' UPDATE Customers SET currentAddress = (%s) WHERE customerID = (%s) ''')
+            values = (address_id, customer_id)
+            cur.execute(sql, values)
+
             mysql.connection.commit()
             # link = "/pages/addresses.html"
 

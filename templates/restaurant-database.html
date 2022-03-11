@@ -482,6 +482,7 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Address ID</th>
+                                <th>Customer ID</th>
                                 <th>City</th>
                                 <th>Street Name</th>
                                 <th>Street Number</th>
@@ -489,18 +490,20 @@
                                 <th>Delete Address</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {% for address in addresses%}
                             <tr class="body-row">
-                                <td><input class="id-input" name="addressID" value="{{ address.addressID }}" readonly></td>
-                                <td>{{ address.city }}</td>
-                                <td>{{ address.streetName }}</td>
-                                <td>{{ address.streetNumber }}</td>
-                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
-                                <td class="delete"> 
-                                    <input class="delete-button" name="delete-address" type="submit" value="Delete">
-                                </td>
+                                <form method="POST">
+                                    <td><input class="id-input" name="addressID" value="{{ address.addressID }}" readonly></td>
+                                    <td>{{ address.customerID }}</td>
+                                    <td>{{ address.city }}</td>
+                                    <td>{{ address.streetName }}</td>
+                                    <td>{{ address.streetNumber }}</td>
+                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="delete"> 
+                                        <input class="delete-button" name="delete-address" type="submit" value="Delete">
+                                    </td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>

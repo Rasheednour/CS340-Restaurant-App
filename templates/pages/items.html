@@ -50,7 +50,7 @@
 
                             <div class="input-box">
                                 <span class="details">Price</span>
-                                <input name="price" type="number" placeholder="Enter The Price" required>
+                                <input name="price" type="number" step="0.01" placeholder="Enter The Price" required>
                             </div>
 
 
@@ -127,16 +127,18 @@
                         <tbody>
                             {% for food in foods%}
                             <tr class="body-row">
-                                <form>
-                                <td name="foodID">{{ food.foodID }}</td>
+                                <form method="POST">
+                                <td><input class="id-input" name="foodID" value="{{ food.foodID }}" readonly></td>
                                 <td>{{ food.foodName }}</td>
                                 <td>{{ food.foodDescription }}</td>
                                 <td>{{ food.foodCategory }}</td>
                                 <td>{{ food.calories }}</td>
                                 <td>{{ food.cuisine }}</td>
                                 <td>{{ food.price }}</td>
-                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
-                                <td class="delete"><button class="delete-button" name="delete" type="submit" value="delete">Delete</button></td>
+                                <td class="edit"><button class="edit-button" name="edit" value="Edit">Edit</button></td>
+                                <td class="delete"> 
+                                    <input class="delete-button" name="delete-food" type="submit" value="Delete">
+                                </td>
                                 </form>
                             </tr>
                             {% endfor %}
@@ -177,11 +179,6 @@
                                 <span class="details">Order Date</span>
                                 <input name="orderDate" type="date" required>
                             </div>
-
-                            <div class="input-box">
-                                <span class="details">Total Price</span>
-                                <input name="totalPrice" type="text" placeholder="Enter The total price" required>
-                            </div>
                         </div>
                         <div class="button">
                             <input name="order-form" type="submit" value="Add">
@@ -197,7 +194,7 @@
                                 <th>Customer ID</th>
                                 <th>Order Progress</th>
                                 <th>Order Date</th>
-                                <th>Total Price</th>
+                                <th>Total Price $</th>
                                 <th>Edit Order</th>
                                 <th>Delete Order</th>
                             </tr>
@@ -205,13 +202,17 @@
                         <tbody>
                             {% for order in orders%}
                             <tr class="body-row">
-                                <td>{{ order.orderID }}</td>
+                                <form method="POST">
+                                <td><input class="id-input" name="orderID" value="{{ order.orderID }}" readonly></td>
                                 <td>{{ order.customerID }}</td>
                                 <td>{{ order.orderProgress }}</td>
                                 <td>{{ order.orderDate }}</td>
                                 <td class="amount">{{ order.totalPrice }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="delete"> 
+                                    <input class="delete-button" name="delete-order" type="submit" value="Delete">
+                                </td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -219,7 +220,7 @@
                 </div>
             </div>
             
-            <input type="radio" id="order-items" name="mytabs" checked="checked">
+            <input type="radio" id="order-items" name="mytabs"  checked="checked">
             <label for="order-items">Order Items</label>
 
             <div class="tab">
@@ -248,12 +249,6 @@
                                 <span class="details">Quantity</span>
                                 <input name="quantity" type="number" placeholder="Enter The Food Quantity" required>
                             </div>
-
-                            <div class="input-box">
-                                <span class="details">Price</span>
-                                <input name="totalPrice" type="number" placeholder="Enter The Total Price" required>
-                            </div>
-
                         </div>
                         <div class="button">
                             <input name="items-form" type="submit" value="Add">
@@ -276,12 +271,16 @@
                         <tbody>
                             {% for item in order_items%}
                             <tr class="body-row">
-                                <td>{{ item.orderID }}</td>
-                                <td>{{ item.foodID }}</td>
-                                <td>{{ item.quantity }}</td>
-                                <td class="amount">{{ item.totalPrice }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <form method="POST">
+                                    <td><input class="id-input" name="orderID" value="{{ item.orderID }}" readonly></td>
+                                    <td>{{ item.foodID }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td class="amount">{{ item.totalPrice }}</td>
+                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="delete"> 
+                                        <input class="delete-button" name="delete-item" type="submit" value="Delete">
+                                    </td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -299,14 +298,6 @@
                     <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
-                                <span class="details">Customer ID</span>
-                                <select name="customerID">
-                                    {% for customer in customers%}
-                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="input-box">
                                 <span class="details">Order ID</span>
                                 <select name="orderID">
                                     {% for order in orders%}
@@ -317,10 +308,6 @@
                             <div class="input-box">
                                 <span class="details">Date</span>
                                 <input name="paymentDate" type="date" required>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Amount</span>
-                                <input name="paymentAmount" type="number" placeholder="Enter The Total Amount" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">Payment Method</span>
@@ -353,14 +340,18 @@
                         <tbody>
                             {% for payment in payments%}
                             <tr class="body-row">
-                                <td>{{ payment.paymentID }}</td>
-                                <td>{{ payment.customerID }}</td>
-                                <td>{{ payment.orderID }}</td>
-                                <td>{{ payment.paymentDate }}</td>
-                                <td class="amount">{{ payment.paymentAmount }}</td>
-                                <td>{{ payment.paymentMethod }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <form method="POST">
+                                    <td><input class="id-input" name="paymentID" value="{{ payment.paymentID }}" readonly></td>
+                                    <td>{{ payment.customerID }}</td>
+                                    <td>{{ payment.orderID }}</td>
+                                    <td>{{ payment.paymentDate }}</td>
+                                    <td class="amount">{{ payment.paymentAmount }}</td>
+                                    <td>{{ payment.paymentMethod }}</td>
+                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="delete"> 
+                                        <input class="delete-button" name="delete-payment" type="submit" value="Delete">
+                                    </td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -422,14 +413,18 @@
                         <tbody>
                             {% for customer in customers%}
                             <tr class="body-row">
-                                <td>{{ customer.customerID }}</td>
-                                <td>{{ customer.firstName }}</td>
-                                <td>{{ customer.lastName }}</td>
-                                <td>{{ customer.email }}</td>
-                                <td>{{ customer.phoneNumber }}</td>
-                                <td>{{ customer.currentAddress }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <form method="POST">
+                                    <td><input class="id-input" name="customerID" value="{{ customer.customerID }}" readonly></td>
+                                    <td>{{ customer.firstName }}</td>
+                                    <td>{{ customer.lastName }}</td>
+                                    <td>{{ customer.email }}</td>
+                                    <td>{{ customer.phoneNumber }}</td>
+                                    <td>{{ customer.currentAddress }}</td>
+                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="delete"> 
+                                        <input class="delete-button" name="delete-customer" type="submit" value="Delete">
+                                    </td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -487,6 +482,7 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Address ID</th>
+                                <th>Customer ID</th>
                                 <th>City</th>
                                 <th>Street Name</th>
                                 <th>Street Number</th>
@@ -494,16 +490,20 @@
                                 <th>Delete Address</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {% for address in addresses%}
                             <tr class="body-row">
-                                <td>{{ address.addressID }}</td>
-                                <td>{{ address.city }}</td>
-                                <td>{{ address.streetName }}</td>
-                                <td>{{ address.streetNumber }}</td>
-                                <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                <form method="POST">
+                                    <td><input class="id-input" name="addressID" value="{{ address.addressID }}" readonly></td>
+                                    <td>{{ address.customerID }}</td>
+                                    <td>{{ address.city }}</td>
+                                    <td>{{ address.streetName }}</td>
+                                    <td>{{ address.streetNumber }}</td>
+                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="delete"> 
+                                        <input class="delete-button" name="delete-address" type="submit" value="Delete">
+                                    </td>
+                                </form>
                             </tr>
                             {% endfor %}
                         </tbody>
