@@ -96,7 +96,7 @@ CREATE TABLE `Orders` (
   `orderID`         int NOT NULL AUTO_INCREMENT,
   `customerID`      int NOT NULL,
   `orderProgress`   varchar(50) NOT NULL,
-  `totalPrice`      float DEFAULT NULL,
+  `totalPrice`      float DEFAULT 0,
   `orderDate`       date NOT NULL,
   PRIMARY KEY (`orderID`),
   KEY `customerID` (`customerID`),
@@ -107,9 +107,9 @@ CREATE TABLE `Orders` (
 -- Dumping data for table `Orders`
 --
 
-INSERT INTO `Orders` VALUES    (1, 1, 'New', NULL, STR_TO_DATE('02/12/2021', '%m/%d/%Y')),
-                               (2, 2, 'New', NULL, STR_TO_DATE('02/09/2021', '%m/%d/%Y')),
-                               (3, 3, 'New', NULL, STR_TO_DATE('01/23/2021', '%m/%d/%Y'));
+INSERT INTO `Orders` VALUES    (1, 1, 'New', 0, STR_TO_DATE('02/12/2021', '%m/%d/%Y')),
+                               (2, 2, 'New', 0, STR_TO_DATE('02/09/2021', '%m/%d/%Y')),
+                               (3, 3, 'New', 0, STR_TO_DATE('01/23/2021', '%m/%d/%Y'));
 
 
 --

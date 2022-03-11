@@ -116,6 +116,12 @@ def restaurant_database():
             quantity = float(data["quantity"])
             total = result[0]["price"] * quantity
 
+            # update order total price
+            order_id = data["orderID"]
+            sql = (''' UPDATE Orders SET totalPrice = (%s) + totalPrice WHERE orderID = (%s) ''')
+            values = (total, order_id)
+            cur.execute(sql, values)
+
             values = (data["orderID"], data["foodID"], data["quantity"], total)
 
             sql = ('''INSERT INTO OrderItems (orderID, foodID, quantity, totalPrice)
@@ -150,8 +156,14 @@ def restaurant_database():
 
     cur = mysql.connection.cursor()
 
+    # # get order prices
+    # sql = ('''SELECT orderID, sum(totalPrice) as totalPrice FROM OrderItems GROUP BY orderID ''')
+    # cur.execute(sql)
+    # order_totals = cur.fetchall()
+
     cur.execute('''SELECT * from Foods''')
     foods = cur.fetchall()
+
     cur.execute('''SELECT * from Orders''')
     orders = cur.fetchall()
 
