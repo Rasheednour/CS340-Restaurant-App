@@ -369,6 +369,7 @@
                                 <th>Amount</th>
                                 <th>Payment Method</th>
                                 <th>Actions</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -376,12 +377,12 @@
                             <tr class="body-row">
 
                                 <form method="POST">
-                                    <input type="hidden" name="table" value="payments" />
-                                    <input type="hidden" name="idType" value="paymentID" />
+                                <input type="hidden" name="table" value="payments" />
+                                <input type="hidden" name="idType" value="paymentID" />
     
-                                    <input type="hidden" name="paymentID" value={{ payment.paymentID }}>
-                                    <td name="paymentID"> {{ payment.paymentID }}</td> </input>
-
+                                <input type="hidden" name="paymentID" value={{ payment.paymentID }}>
+                                <td name="paymentID"> {{ payment.paymentID }}</td> </input>
+                                <td>{{ payment.customerID }}</td>
                                 <td>{{ payment.orderID }}</td>
                                 <td>{{ payment.paymentDate }}</td>
                                 <td class="amount">{{ payment.paymentAmount }}</td>
