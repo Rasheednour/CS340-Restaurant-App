@@ -156,11 +156,6 @@ def restaurant_database():
 
     cur = mysql.connection.cursor()
 
-    # # get order prices
-    # sql = ('''SELECT orderID, sum(totalPrice) as totalPrice FROM OrderItems GROUP BY orderID ''')
-    # cur.execute(sql)
-    # order_totals = cur.fetchall()
-
     cur.execute('''SELECT * from Foods''')
     foods = cur.fetchall()
 
