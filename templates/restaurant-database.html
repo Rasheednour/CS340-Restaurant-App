@@ -290,12 +290,20 @@
                         <tbody>
                             {% for item in order_items%}
                             <tr class="body-row">
-                                <td>{{ item.orderID }}</td>
+                                <form method="POST">
+                                    <input type="hidden" name="table" value="orderItems" />
+                                    <input type="hidden" name="idType" value="orderID" />
+    
+                                    <input type="hidden" name="orderID" value={{ item.orderID }}>
+                                    <td name="orderID"> {{ item.orderID }}</td> </input>
+
                                 <td>{{ item.foodID }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td class="amount">{{ item.totalPrice }}</td>
                                 <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+                                
+                                <td class="delete"><button class="delete-button" type="submit" name="delete" >Delete</button></td> 
+                                </form>       
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -367,14 +375,23 @@
                         <tbody>
                             {% for payment in payments%}
                             <tr class="body-row">
-                                <td>{{ payment.paymentID }}</td>
+
+                                <form method="POST">
+                                    <input type="hidden" name="table" value="payments" />
+                                    <input type="hidden" name="idType" value="paymentID" />
+    
+                                    <input type="hidden" name="paymentID" value={{ payment.paymentID }}>
+                                    <td name="orderID"> {{ payment.paymentID }}</td> </input>
+
                                 <td>{{ payment.customerID }}</td>
                                 <td>{{ payment.orderID }}</td>
                                 <td>{{ payment.paymentDate }}</td>
                                 <td class="amount">{{ payment.paymentAmount }}</td>
                                 <td>{{ payment.paymentMethod }}</td>
                                 <td class="edit">Edit</td>
-                                <td class="delete">Delete</td>
+
+                                <td class="delete"><button class="delete-button" type="submit" name="delete" >Delete</button></td> 
+                                </form>     
                             </tr>
                             {% endfor %}
                         </tbody>
