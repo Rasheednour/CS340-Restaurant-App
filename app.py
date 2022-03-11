@@ -158,6 +158,10 @@ def rem_item(param):
 
     return get_items() 
 
+@app.route("/test.html", methods=['GET'])
+def test1():
+    return render_template("test.html")
+
 if __name__ == "__main__":
 
     # starting flask listening socket
