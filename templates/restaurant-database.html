@@ -156,10 +156,10 @@
                     <form method="POST">
                         <div class="order-details">
                             <div class="input-box">
-                                <span class="details">Customer ID</span>
+                                <span class="details">Customer</span>
                                 <select name="customerID">
                                     {% for customer in customers%}
-                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}</option>
+                                    <option value="{{ customer.customerID }}">{{ customer.customerID }}. {{ customer.firstName }} {{ customer.lastName }}</option>
                                     {% endfor %}
                                 </select>
 

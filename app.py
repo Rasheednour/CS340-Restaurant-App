@@ -37,10 +37,16 @@ def restaurant_database():
     food_search = ()
     link = "restaurant-database.html"
 
+    # detect POST methods from HTML forms which include DELETE methods as well
     if request.method == 'POST':
+
+        # start a mysql connection
         cur = mysql.connection.cursor()
+
+        # obtain the form data received from the request
         data = request.form
 
+        # for DELETE requests, detect which table requested a delete.
         if 'delete-food' in data:
             values = (data["foodID"],)
             sql = ('''DELETE FROM OrderItems WHERE foodID = (%s)''')
@@ -95,6 +101,8 @@ def restaurant_database():
             cur.execute(sql, values)
             mysql.connection.commit()
 
+
+        # for INSERT requests, detect which table requested the INSERT
         elif 'food-form' in data:
             values = (data["name"], data["description"], data["category"], data["calories"], data["cuisine"], data["price"])
             sql = ('''INSERT INTO Foods (foodName, foodDescription, foodCategory, calories, cuisine, price)
@@ -170,9 +178,6 @@ def restaurant_database():
 
         elif 'addresses-form' in data:
             
-
-            
-
             values = (data["customerID"], data["city"], data["streetName"], data["streetNumber"])
             sql = ('''INSERT INTO Addresses (customerID, city, streetName, streetNumber)
                     VALUES (%s, %s, %s, %s)''')
@@ -195,26 +200,34 @@ def restaurant_database():
             mysql.connection.commit()
             # link = "/pages/addresses.html"
 
+    # establish a mysql connection to retrieve data from DB
     cur = mysql.connection.cursor()
 
+    # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from Foods''')
     foods = cur.fetchall()
 
+    # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from Orders''')
     orders = cur.fetchall()
 
+    # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from OrderItems''')
     order_items = cur.fetchall()
 
+    # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from Customers''')
     customers = cur.fetchall()
 
+    # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from Addresses''')
     addresses = cur.fetchall()
 
+    # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from Payments''')
     payments = cur.fetchall()
 
+    # render the HTML webpage and attch all data retrieved above to be used by the HTML
     return render_template(link, foods=foods, orders=orders, 
                                      order_items=order_items, customers=customers, 
                                            addresses=addresses, payments=payments, 
