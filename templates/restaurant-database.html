@@ -193,6 +193,7 @@
                                 <th>Order ID</th>
                                 <th>Customer</th>
                                 <th>Order Progress</th>
+                                <th>Order Details</th>
                                 <th>Order Date</th>
                                 <th>Total Price $</th>
                                 <th>Edit Order</th>
@@ -210,6 +211,15 @@
                                     {% endif %}
                                 {% endfor %}
                                 <td>{{ order.orderProgress }}</td>
+                                <td>
+                                    <ul>
+                                        {% for item in order_items%}
+                                            {% if item.orderID == order.orderID %}
+                                            <li>{{ item.foodName }} x{{ item.quantity }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </td>
                                 <td>{{ order.orderDate }}</td>
                                 <td class="amount">{{ order.totalPrice }}</td>
                                 <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
@@ -267,7 +277,7 @@
                                 <th>Order ID</th>
                                 <th>Food</th>
                                 <th>Quantity</th>
-                                <th>Total Price</th>
+                                <th>Total Price $</th>
                                 <th>Edit Item</th>
                                 <th>Delete Item</th>
                             </tr>
