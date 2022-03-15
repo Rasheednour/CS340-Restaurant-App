@@ -166,7 +166,7 @@
                             </div>
 
                             <div class="input-box">
-                                <span class="details">Progress</span>
+                                <span class="details">Order Progress</span>
                                 <select name="orderProgress">
                                     <option value="New">New</option>
                                     <option value="Preparing">Preparing</option>
@@ -191,7 +191,7 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Order ID</th>
-                                <th>Customer ID</th>
+                                <th>Customer</th>
                                 <th>Order Progress</th>
                                 <th>Order Date</th>
                                 <th>Total Price $</th>
@@ -204,7 +204,11 @@
                             <tr class="body-row">
                                 <form method="POST">
                                 <td><input class="id-input" name="orderID" value="{{ order.orderID }}" readonly></td>
-                                <td>{{ order.customerID }}</td>
+                                {% for customer in customers%}
+                                    {% if customer.customerID == order.customerID %}
+                                    <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+                                    {% endif %}
+                                {% endfor %}
                                 <td>{{ order.orderProgress }}</td>
                                 <td>{{ order.orderDate }}</td>
                                 <td class="amount">{{ order.totalPrice }}</td>
