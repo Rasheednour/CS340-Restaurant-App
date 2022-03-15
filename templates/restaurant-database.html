@@ -241,10 +241,10 @@
                                 </select>
                             </div>
                             <div class="input-box">
-                                <span class="details">Food ID</span>
+                                <span class="details">Food</span>
                                 <select name="foodID">
                                     {% for food in foods%}
-                                    <option value="{{ food.foodID }}">{{ food.foodID }}</option>
+                                    <option value="{{ food.foodID }}">{{ food.foodID }}. {{ food.foodName }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -265,7 +265,7 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Order ID</th>
-                                <th>Food ID</th>
+                                <th>Food</th>
                                 <th>Quantity</th>
                                 <th>Total Price</th>
                                 <th>Edit Item</th>
@@ -277,7 +277,7 @@
                             <tr class="body-row">
                                 <form method="POST">
                                     <td><input class="id-input" name="orderID" value="{{ item.orderID }}" readonly></td>
-                                    <td>{{ item.foodID }}</td>
+                                    <td>{{ item.foodName }}</td>
                                     <td>{{ item.quantity }}</td>
                                     <td class="amount">{{ item.totalPrice }}</td>
                                     <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>

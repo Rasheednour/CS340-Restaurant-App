@@ -212,7 +212,9 @@ def restaurant_database():
     orders = cur.fetchall()
 
     # retrieve all data from the Foods table to be shown on webpage
-    cur.execute('''SELECT * from OrderItems''')
+    cur.execute(''' SELECT * FROM orderitems
+                    INNER JOIN foods
+                    ON orderitems.foodID = foods.foodID''')
     order_items = cur.fetchall()
 
     # retrieve all data from the Foods table to be shown on webpage
@@ -226,12 +228,14 @@ def restaurant_database():
     # retrieve all data from the Foods table to be shown on webpage
     cur.execute('''SELECT * from Payments''')
     payments = cur.fetchall()
+        
+
 
     # render the HTML webpage and attch all data retrieved above to be used by the HTML
     return render_template(link, foods=foods, orders=orders, 
-                                     order_items=order_items, customers=customers, 
-                                           addresses=addresses, payments=payments, 
-                                     food_search=food_search)
+                            order_items=order_items, customers=customers, 
+                            addresses=addresses, payments=payments, 
+                            food_search=food_search)
 
 
 
