@@ -192,6 +192,7 @@
                             <tr class="head-row">
                                 <th>Order ID</th>
                                 <th>Customer</th>
+                                <th>Current Address</th>
                                 <th>Order Progress</th>
                                 <th>Order Details</th>
                                 <th>Order Date</th>
@@ -201,15 +202,23 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             {% for order in orders%}
                             <tr class="body-row">
                                 <form method="POST">
+
                                 <td><input class="id-input" name="orderID" value="{{ order.orderID }}" readonly></td>
+
                                 {% for customer in customers%}
                                     {% if customer.customerID == order.customerID %}
                                     <td>{{ customer.firstName }} {{ customer.lastName }}</td>
                                     {% endif %}
                                 {% endfor %}
+
+                                {% for address in order_addr_info %}
+                                <td>{{ address[0] }}, {{ address[1] }}, {{ address[2] }}</td>
+                                {% endfor %}
+
                                 <td>{{ order.orderProgress }}</td>
                                 <td>
                                     <ul>

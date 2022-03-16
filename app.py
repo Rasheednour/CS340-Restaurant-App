@@ -212,9 +212,9 @@ def restaurant_database():
     orders = cur.fetchall()
 
     # retrieve all data from the Foods table to be shown on webpage
-    cur.execute(''' SELECT * FROM orderitems
-                    INNER JOIN foods
-                    ON orderitems.foodID = foods.foodID''')
+    cur.execute(''' SELECT * FROM OrderItems
+                    INNER JOIN Foods
+                    ON OrderItems.FoodID = Foods.FoodID''')
     order_items = cur.fetchall()
 
     # retrieve all data from the Foods table to be shown on webpage
@@ -229,13 +229,44 @@ def restaurant_database():
     cur.execute('''SELECT * from Payments''')
     payments = cur.fetchall()
         
+    # retrieve address information for each order
 
+    # create an empty list to store address information for each order
+    order_addr_info = []
+
+    # iterate througth current orders
+    for order in orders:
+
+        # get the customer ID for each order
+        print("order is", order)
+        customer_id = order["customerID"]
+
+        # fetch the current address for each customer
+        cur.execute(''' SELECT currentAddress FROM Customers WHERE customerID = (%s) ''', (customer_id,))
+
+        # obtain the query result
+        result = cur.fetchall()
+
+        # get the address ID from the query
+        address_id = result[0]["currentAddress"]
+
+        # fetch the DB for the address information for the address ID obtained above
+        cur.execute(''' SELECT city, streetName, streetNumber FROM Addresses WHERE addressID = (%s) ''', (address_id, ))
+
+        # get the query result
+        result = cur.fetchall()
+
+        # store the address info in a list
+        address_info = [result[0]["streetNumber"], result[0]["streetName"], result[0]["city"]]
+
+        # append the address info list to the list of addresses for each order
+        order_addr_info.append(address_info)
 
     # render the HTML webpage and attch all data retrieved above to be used by the HTML
     return render_template(link, foods=foods, orders=orders, 
                             order_items=order_items, customers=customers, 
                             addresses=addresses, payments=payments, 
-                            food_search=food_search)
+                            food_search=food_search, order_addr_info = order_addr_info)
 
 
 
