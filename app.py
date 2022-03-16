@@ -66,9 +66,9 @@ def restaurant_database():
             mysql.connection.commit()
 
         elif 'delete-item' in data:
-            values = (data["orderID"],)
+            values = (data["orderID"], data["foodID"], data["quantity"])
 
-            sql = ('''SELECT totalPrice FROM orderItems WHERE orderID = (%s)''')
+            sql = ('''SELECT totalPrice FROM orderItems WHERE orderID = (%s) AND foodID = (%s) AND quantity = (%s)''')
             
             cur.execute(sql, values)
             result = cur.fetchall()
@@ -77,7 +77,7 @@ def restaurant_database():
             sql = (''' UPDATE Orders SET totalPrice = totalPrice - (%s) WHERE orderID = (%s) ''')
             cur.execute(sql, (amount, data["orderID"]))
 
-            sql = ('''DELETE FROM OrderItems WHERE orderID = (%s)''')
+            sql = ('''DELETE FROM OrderItems WHERE orderID = (%s) AND foodID = (%s) AND quantity = (%s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
 

@@ -61,8 +61,7 @@ body {
     background: rgb(170, 1, 1);
 }
 
-.mytabs .submit-tab {
-}
+
 
 /*--------------------------form styling-----------------------------------*/
 
@@ -202,6 +201,7 @@ form .button input:hover{
     margin-top: 1rem;
 }
 
+
 table{
     margin-left: auto;
     margin-right: auto;
@@ -214,7 +214,6 @@ table{
     overflow: hidden;
 
 }
-
 
 thead{
     border: 1px solid rgb(0, 0, 0);
@@ -233,6 +232,15 @@ th{
 
 td{
     padding: 1rem 2rem;
+    white-space:normal;
+
+    max-width: 1px;
+
+}
+
+.no-wrap{
+    padding: 1rem 2rem;
+    white-space:nowrap;
 }
 
 .amount{

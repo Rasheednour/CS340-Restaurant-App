@@ -275,6 +275,7 @@
                         <thead>
                             <tr class="head-row">
                                 <th>Order ID</th>
+                                <th>Food ID</th>
                                 <th>Food</th>
                                 <th>Quantity</th>
                                 <th>Total Price $</th>
@@ -287,8 +288,9 @@
                             <tr class="body-row">
                                 <form method="POST">
                                     <td><input class="id-input" name="orderID" value="{{ item.orderID }}" readonly></td>
+                                    <td><input class="id-input" name="foodID" value="{{ item.foodID }}" readonly></td>
                                     <td>{{ item.foodName }}</td>
-                                    <td>{{ item.quantity }}</td>
+                                    <td><input class="id-input" name="quantity" value="{{ item.quantity }}" readonly></td>
                                     <td class="amount">{{ item.totalPrice }}</td>
                                     <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
                                     <td class="delete"> 
