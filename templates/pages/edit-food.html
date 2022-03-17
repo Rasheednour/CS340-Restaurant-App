@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Food</title>
+    
+    <link rel="stylesheet" href="../static/css/database.css">
+    
+</head>
+<body> 
+
+    <div class="table-container">
+        <form method="POST" action="edit-food">
+            <div class="order-details">
+                <div class="search-table-container">
+                    <table>
+                        <caption>Edit Food</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Food ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Calories</th>
+                                <th>Cuisine</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td><input class="id-input" name="foodID" value="{{ food_data.foodID }}" readonly></td>
+                                <td><input class="input-field" name="foodName" value="{{ food_data.foodName }}"></td>
+                                <td><input class="input-field" name="foodDescription" value="{{ food_data.foodDescription }}"></td>
+                                <td><input class="input-field" name="foodCategory" value="{{ food_data.foodCategory }}"></td>
+                                <td><input class="input-field" name="calories" value="{{ food_data.calories }}"></td>
+                                <td><input class="input-field" name="cuisine" value="{{ food_data.cuisine }}"></td>
+                                <td><input class="input-field" name="price" value="{{ food_data.price }}"></td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button">
+                <input name="edit-food" type="submit" value="Save">
+            </div>
+        </form>
+   
+</div>
+ </body>

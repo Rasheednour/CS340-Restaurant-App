@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from audioop import add
-from flask import Flask, render_template, request, flash
+import os
+from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 
 
@@ -46,8 +46,26 @@ def restaurant_database():
         # obtain the form data received from the request
         data = request.form
 
+        if 'edit-food' in data:
+            cur.execute('''SELECT * from Foods WHERE foodID = (%s)''', (data["foodID"], ))
+            result = cur.fetchall()
+            food_data = result[0]
+            return render_template("./pages/edit-food.html", food_data=food_data)
+        
+        elif 'edit-order' in data:
+            cur.execute('''SELECT * from Orders WHERE orderID = (%s)''', (data["orderID"], ))
+            result = cur.fetchall()
+            order_data = result[0]
+            return render_template("./pages/edit-order.html", order_data=order_data)
+
+        elif 'edit-item' in data:
+            cur.execute('''SELECT * from OrderItems WHERE orderID = (%s) AND foodID = (%s) AND quantity = (%s)''', (data["orderID"], data["foodID"], data["quantity"]))
+            result = cur.fetchall()
+            item_data = result[0]
+            return render_template("./pages/edit-item.html", item_data=item_data)
+
         # for DELETE requests, detect which table requested a delete.
-        if 'delete-food' in data:
+        elif 'delete-food' in data:
             values = (data["foodID"],)
             sql = ('''DELETE FROM OrderItems WHERE foodID = (%s)''')
             cur.execute(sql, values)
@@ -267,6 +285,74 @@ def restaurant_database():
                             order_items=order_items, customers=customers, 
                             addresses=addresses, payments=payments, 
                             food_search=food_search, order_addr_info = order_addr_info)
+
+
+@app.route("/edit-food", methods=['POST'])
+def edit_food():
+    # start a mysql connection
+        cur = mysql.connection.cursor()
+
+        # obtain the form data received from the request
+        data = request.form
+
+        food_id = data["foodID"]
+        food_name = data["foodName"]
+        food_description = data["foodDescription"]
+        food_category = data["foodCategory"]
+        cuisine = data["cuisine"]
+        calories = data["calories"]
+        price = data["price"]
+
+        sql = (''' UPDATE Foods SET foodName = (%s), foodDescription = (%s), 
+                    foodCategory = (%s), calories = (%s), cuisine = (%s), 
+                    price = (%s) WHERE foodID = (%s) ''')
+
+        values = (food_name, food_description, food_category, calories, cuisine, price, food_id)
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        
+        return redirect(url_for(('restaurant_database')))
+
+@app.route("/edit-order", methods=['POST'])
+def edit_order():
+    # start a mysql connection
+        cur = mysql.connection.cursor()
+
+        # obtain the form data received from the request
+        data = request.form
+
+        order_id = data["orderID"]
+        order_progress = data["orderProgress"]
+        order_date = data["orderDate"]
+
+        sql = (''' UPDATE Orders SET orderProgress = (%s), orderDate = (%s) WHERE orderID = (%s) ''')
+
+        values = (order_progress, order_date, order_id)
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        
+        return redirect(url_for(('restaurant_database')))
+
+@app.route("/edit-item", methods=['POST'])
+def edit_item():
+    # start a mysql connection
+        cur = mysql.connection.cursor()
+
+        # obtain the form data received from the request
+        data = request.form
+
+        order_id = data["orderID"]
+        quantity = data["quantity"]
+        food_id = data["foodID"]
+
+        sql = (''' UPDATE OrderItems SET quantity = (%s) WHERE orderID = (%s) AND foodID = (%s)''')
+
+        values = (quantity, order_id, food_id)
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        
+        return redirect(url_for(('restaurant_database')))
+        
 
 
 

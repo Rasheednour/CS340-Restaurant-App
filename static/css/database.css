@@ -294,6 +294,26 @@ td{
     cursor: pointer;
 }
 
+.save-button {
+
+    width: 20%;
+    margin-left: 50%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    outline: none;
+    border: 1px solid rgb(170, 1, 1);
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    color:rgb(218, 71, 71)
+}
+.save-button:hover{
+    background: rgb(170, 1, 1);
+    color: white;
+    cursor: pointer;
+}
+
 .id-input{
     border: none;
     background-color: transparent;
@@ -318,4 +338,8 @@ caption{
 
 .edit, .delete{
     border: 1px solid grey;
+}
+
+.input-field{
+    width: 80%;
 }

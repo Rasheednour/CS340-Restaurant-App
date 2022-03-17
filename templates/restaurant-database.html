@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>Global Foods</title>
+    
     <link rel="stylesheet" href="../static/css/database.css">
+    
 </head>
 <body>
     <div class="page-background">
@@ -135,7 +137,9 @@
                                 <td>{{ food.calories }}</td>
                                 <td>{{ food.cuisine }}</td>
                                 <td>{{ food.price }}</td>
-                                <td class="edit"><button class="edit-button" name="edit" value="Edit">Edit</button></td>
+                                <td class="edit">
+                                    <input class="edit-button" name="edit-food" type="submit" value="Edit">
+                                </td>
                                 <td class="delete"> 
                                     <input class="delete-button" name="delete-food" type="submit" value="Delete">
                                 </td>
@@ -231,7 +235,9 @@
                                 </td>
                                 <td>{{ order.orderDate }}</td>
                                 <td class="amount">{{ order.totalPrice }}</td>
-                                <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                <td class="edit">
+                                    <input class="edit-button" name="edit-order" type="submit" value="Edit">
+                                </button></td>
                                 <td class="delete"> 
                                     <input class="delete-button" name="delete-order" type="submit" value="Delete">
                                 </td>
@@ -301,7 +307,9 @@
                                     <td>{{ item.foodName }}</td>
                                     <td><input class="id-input" name="quantity" value="{{ item.quantity }}" readonly></td>
                                     <td class="amount">{{ item.totalPrice }}</td>
-                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="edit">
+                                        <input class="edit-button" name="edit-item" type="submit" value="Edit">
+                                    </td>
                                     <td class="delete"> 
                                         <input class="delete-button" name="delete-item" type="submit" value="Delete">
                                     </td>

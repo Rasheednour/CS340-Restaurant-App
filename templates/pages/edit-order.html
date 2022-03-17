@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Order</title>
+    
+    <link rel="stylesheet" href="../static/css/database.css">
+    
+</head>
+<body> 
+
+    <div class="table-container">
+        <form method="POST" action="edit-order">
+            <div class="order-details">
+                <div class="search-table-container">
+                    <table>
+                        <caption>Edit Food</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Order ID</th>
+                                <th>Order Progress</th>
+                                <th>Order Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td><input class="id-input" name="orderID" value="{{ order_data.orderID }}" readonly></td>
+                                <td><input class="input-field" name="orderProgress" value="{{ order_data.orderProgress }}"></td>
+                                <td><input class="input-field" name="orderDate" type="date" value="{{ order_data.orderDate }}"></td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button">
+                <input name="edit-order" type="submit" value="Save">
+            </div>
+        </form>
+   
+</div>
+ </body>
