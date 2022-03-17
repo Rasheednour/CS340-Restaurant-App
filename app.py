@@ -356,11 +356,42 @@ def edit_item():
         order_id = data["orderID"]
         quantity = data["quantity"]
         food_id = data["foodID"]
+        item_price = data["totalPrice"]
+        # get new total price for order item
 
-        sql = (''' UPDATE OrderItems SET quantity = (%s) WHERE orderID = (%s) AND foodID = (%s)''')
+        sql = ('''SELECT price FROM Foods WHERE foodID = (%s)''')
 
-        values = (quantity, order_id, food_id)
+        cur.execute(sql, (food_id, ))
+
+        result = cur.fetchall()
+
+        food_price = result[0]["price"]
+
+        total_price = float(food_price) * float(quantity)
+
+        # update order item information
+
+        sql = (''' UPDATE OrderItems SET quantity = (%s), totalPrice = (%s) WHERE orderID = (%s) AND foodID = (%s)''')
+
+        values = (quantity, total_price, order_id, food_id)
         cur.execute(sql, values)
+
+        price_diff = total_price - float(item_price)
+
+        cur.execute(''' SELECT totalPrice FROM Orders WHERE orderID = (%s) ''', (order_id, ))
+
+        result = cur.fetchall()
+
+        order_price = result[0]["totalPrice"]
+
+        updated_price = float(order_price) + price_diff
+
+        sql = ('''UPDATE Orders SET totalPrice = (%s) WHERE orderID = (%s)''')
+
+        values = (updated_price, order_id)
+
+        cur.execute(sql, values)
+
         mysql.connection.commit()
         
         return redirect(url_for(('restaurant_database')))
@@ -410,6 +441,8 @@ def edit_address():
         mysql.connection.commit()
         
         return redirect(url_for(('restaurant_database')))
+
+
 
 if __name__ == "__main__":
 
