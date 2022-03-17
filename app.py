@@ -64,6 +64,18 @@ def restaurant_database():
             item_data = result[0]
             return render_template("./pages/edit-item.html", item_data=item_data)
 
+        elif 'edit-customer' in data:
+            cur.execute('''SELECT * from Customers WHERE customerID = (%s)''', (data["customerID"], ))
+            result = cur.fetchall()
+            customer_data = result[0]
+            return render_template("./pages/edit-customer.html", customer_data=customer_data)
+
+        elif 'edit-address' in data:
+            cur.execute('''SELECT * from Addresses WHERE addressID = (%s)''', (data["addressID"], ))
+            result = cur.fetchall()
+            address_data = result[0]
+            return render_template("./pages/edit-address.html", address_data=address_data)
+
         # for DELETE requests, detect which table requested a delete.
         elif 'delete-food' in data:
             values = (data["foodID"],)
@@ -354,7 +366,50 @@ def edit_item():
         return redirect(url_for(('restaurant_database')))
         
 
+@app.route("/edit-customer", methods=['POST'])
+def edit_customer():
+    # start a mysql connection
+        cur = mysql.connection.cursor()
 
+        # obtain the form data received from the request
+        data = request.form
+
+        customer_id = data["customerID"]
+        first_name = data["firstName"]
+        last_name = data["lastName"]
+        email = data["email"]
+        phone_number = data["phoneNumber"]
+        current_address = data["currentAddress"]
+
+        sql = (''' UPDATE Customers SET firstName = (%s), lastName = (%s), email = (%s), phoneNumber = (%s), currentAddress = (%s) WHERE customerID = (%s)''')
+
+        values = (first_name, last_name, email, phone_number, current_address, customer_id)
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        
+        return redirect(url_for(('restaurant_database')))
+
+
+@app.route("/edit-address", methods=['POST'])
+def edit_address():
+    # start a mysql connection
+        cur = mysql.connection.cursor()
+
+        # obtain the form data received from the request
+        data = request.form
+
+        address_id = data["addressID"]
+        city = data["city"]
+        street_name = data["streetName"]
+        street_number = data["streetNumber"]
+
+        sql = (''' UPDATE Addresses SET city = (%s), streetName = (%s), streetNumber = (%s) WHERE addressID = (%s)''')
+
+        values = (city, street_name, street_number, address_id)
+        cur.execute(sql, values)
+        mysql.connection.commit()
+        
+        return redirect(url_for(('restaurant_database')))
 
 if __name__ == "__main__":
 

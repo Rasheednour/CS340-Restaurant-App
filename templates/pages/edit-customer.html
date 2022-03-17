@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Order</title>
+    
+    <link rel="stylesheet" href="../static/css/database.css">
+    
+</head>
+<body> 
+
+    <div class="table-container">
+        <form method="POST" action="edit-customer">
+            <div class="order-details">
+                <div class="search-table-container">
+                    <table>
+                        <caption>Edit Customer Information</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Customer ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Phone Number</th>
+                                <th>Current Address</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td><input class="id-input" name="customerID" value="{{ customer_data.customerID }}" readonly></td>
+                                <td><input class="input-field" name="firstName" value="{{ customer_data.firstName }}"></td>
+                                <td><input class="input-field" name="lastName" value="{{ customer_data.lastName }}"></td>
+                                <td><input class="input-field" name="email" value="{{ customer_data.email }}"></td>
+                                <td><input class="input-field" name="phoneNumber" value="{{ customer_data.phoneNumber }}"></td>
+                                <td><input class="input-field" name="currentAddress" value="{{ customer_data.currentAddress }}"></td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button">
+                <input name="edit-customer" type="submit" value="Save">
+            </div>
+        </form>
+   
+</div>
+ </body>

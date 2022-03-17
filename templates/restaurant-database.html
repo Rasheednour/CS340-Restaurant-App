@@ -451,7 +451,9 @@
                                     <td>{{ customer.email }}</td>
                                     <td>{{ customer.phoneNumber }}</td>
                                     <td>{{ customer.currentAddress }}</td>
-                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="edit">
+                                        <input class="edit-button" name="edit-customer" type="submit" value="Edit">
+                                    </td>
                                     <td class="delete"> 
                                         <input class="delete-button" name="delete-customer" type="submit" value="Delete">
                                     </td>
@@ -462,10 +464,6 @@
                     </table>
                 </div>
             </div>
-
-
-
-
             
             <input type="radio" id="addresses" name="mytabs">
             <label for="addresses">Addresses</label>
@@ -530,7 +528,9 @@
                                     <td>{{ address.city }}</td>
                                     <td>{{ address.streetName }}</td>
                                     <td>{{ address.streetNumber }}</td>
-                                    <td class="edit"><button class="edit-button" name="edit" type="submit" value="edit">Edit</button></td>
+                                    <td class="edit">
+                                        <input class="edit-button" name="edit-address" type="submit" value="Edit">
+                                    </td>
                                     <td class="delete"> 
                                         <input class="delete-button" name="delete-address" type="submit" value="Delete">
                                     </td>

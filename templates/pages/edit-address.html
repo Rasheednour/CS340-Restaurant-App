@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Order</title>
+    
+    <link rel="stylesheet" href="../static/css/database.css">
+    
+</head>
+<body> 
+
+    <div class="table-container">
+        <form method="POST" action="edit-address">
+            <div class="order-details">
+                <div class="search-table-container">
+                    <table>
+                        <caption>Edit Address Information</caption>
+                        <thead>
+                            <tr class="head-row">
+                                <th>Address ID</th>
+                                <th>Customer ID</th>
+                                <th>City</th>
+                                <th>Street Name</th>
+                                <th>Street Number</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="body-row">
+                                <td><input class="id-input" name="addressID" value="{{ address_data.addressID }}" readonly></td>
+                                <td><input class="id-input" name="customerID" value="{{ address_data.customerID }}" readonly></td>
+                                <td><input class="input-field" name="city" value="{{ address_data.city }}"></td>
+                                <td><input class="input-field" name="streetName" value="{{ address_data.streetName }}"></td>
+                                <td><input class="input-field" name="streetNumber" value="{{ address_data.streetNumber }}"></td>
+                               
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button">
+                <input name="edit-address" type="submit" value="Save">
+            </div>
+        </form>
+   
+</div>
+ </body>
