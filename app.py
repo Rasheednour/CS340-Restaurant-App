@@ -141,7 +141,7 @@ def restaurant_database():
             mysql.connection.commit()
 
         elif 'search-form' in data:
-            sql = (''' SELECT * FROM Foods WHERE foodName = (%s) ''')
+            sql = (''' SELECT * FROM Foods WHERE foodName LIKE (%s) ''')
             search = data["search"]
             cur.execute(sql, [search])
             search_result = cur.fetchall()
