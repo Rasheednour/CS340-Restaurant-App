@@ -85,6 +85,7 @@ def restaurant_database():
             values = (data["foodID"],)
             sql = ('''DELETE FROM OrderItems WHERE foodID = (%s)''')
             cur.execute(sql, values)
+            mysql.connection.commit()
             sql = ('''DELETE FROM Foods WHERE foodID = (%s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
@@ -93,8 +94,10 @@ def restaurant_database():
             values = (data["orderID"],)
             sql = ('''DELETE FROM OrderItems WHERE orderID = (%s)''')
             cur.execute(sql, values)
+            mysql.connection.commit()
             sql = ('''DELETE FROM Payments WHERE orderID = (%s)''')
             cur.execute(sql, values)
+            mysql.connection.commit()
             sql = ('''DELETE FROM Orders WHERE orderID = (%s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
@@ -123,26 +126,36 @@ def restaurant_database():
 
         elif 'delete-customer' in data:
             values = (data["customerID"],)
+
             sql = ('''DELETE FROM Addresses WHERE customerID = (%s)''')
             cur.execute(sql, values)
+            mysql.connection.commit()
+
+            sql = ('''DELETE FROM Orders WHERE customerID = (%s)''')
+            cur.execute(sql, values)
+            mysql.connection.commit()
+
+            sql = ('''DELETE FROM Payments WHERE customerID = (%s)''')
+            cur.execute(sql, values)
+            mysql.connection.commit()
+
             sql = ('''DELETE FROM Customers WHERE customerID = (%s)''')
             cur.execute(sql, values)
             mysql.connection.commit()
 
         elif 'delete-address' in data:
-            values = (data["addressID"],)
-            sql = ('''DELETE FROM Addresses WHERE addressID = (%s)''')
-            cur.execute(sql, values)
 
-            mysql.connection.commit()
-            
             sql = ('''SELECT * FROM Customers WHERE currentAddress = (%s)''')
             values = (data["addressID"],)
             cur.execute(sql, values)
             result = cur.fetchall()
-            print("DATA IS ", data)
             if result:
                 cur.execute(''' UPDATE Customers SET currentAddress = NULL WHERE customerID = (%s)''', (data["customerID"], ))
+
+            mysql.connection.commit()
+
+            sql = ('''DELETE FROM Addresses WHERE addressID = (%s)''')
+            cur.execute(sql, values)
 
             mysql.connection.commit()
 
@@ -283,33 +296,37 @@ def restaurant_database():
     for order in orders:
 
         # get the customer ID for each order
-        print("order is", order)
         customer_id = order["customerID"]
 
+        address_info = []
+
         # fetch the current address for each customer
-        cur.execute(''' SELECT currentAddress FROM Customers WHERE customerID = (%s) ''', (customer_id,))
+        cur.execute(''' SELECT customerID, currentAddress FROM Customers WHERE customerID = (%s) ''', (customer_id,))
 
         # obtain the query result
         result = cur.fetchall()
 
-        # get the address ID from the query
-        address_id = result[0]["currentAddress"]
+        if result[0]["currentAddress"]:
+            # get the address ID from the query
+            address_id = result[0]["currentAddress"]
 
-        # fetch the DB for the address information for the address ID obtained above
-        cur.execute(''' SELECT city, streetName, streetNumber FROM Addresses WHERE addressID = (%s) ''', (address_id, ))
+            # fetch the DB for the address information for the address ID obtained above
+            cur.execute(''' SELECT customerID, city, streetName, streetNumber FROM Addresses WHERE addressID = (%s) ''', (address_id, ))
 
-        # get the query result
-        result = cur.fetchall()
+            # get the query result
+            result = cur.fetchall()
 
-        address_info = []
-
-        if result:
             # store the address info in a list
-            address_info = [result[0]["streetNumber"], result[0]["streetName"], result[0]["city"]]
+            address_info = [result[0]["customerID"], result[0]["streetNumber"], result[0]["streetName"], result[0]["city"]]
             
-        # append the address info list to the list of addresses for each order
-        order_addr_info.append(address_info)
+            # append the address info list to the list of addresses for each order
+            order_addr_info.append(address_info)
 
+        else:
+            customer = result[0]["customerID"]
+            order_addr_info.append([customer, None, None, None, None])
+
+    print("order addr info is", order_addr_info)
     # render the HTML webpage and attch all data retrieved above to be used by the HTML
     return render_template(link, foods=foods, orders=orders, 
                             order_items=order_items, customers=customers, 
