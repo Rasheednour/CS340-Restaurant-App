@@ -435,7 +435,7 @@
                                 <th>Last Name</th>
                                 <th>Email Address</th>
                                 <th>Phone Number</th>
-                                <th>Address ID</th>
+                                <th>Current Address</th>
                                 <th>Edit Customer</th>
                                 <th>Delete Customer</th>
                             </tr>
@@ -450,7 +450,15 @@
                                     <td>{{ customer.lastName }}</td>
                                     <td>{{ customer.email }}</td>
                                     <td>{{ customer.phoneNumber }}</td>
-                                    <td>{{ customer.currentAddress }}</td>
+                                    {% if customer.currentAddress %}
+                                        {% for address in addresses %}
+                                            {% if customer.currentAddress == address.addressID %}
+                                            <td>{{ address.streetNumber }}, {{ address.streetName }}, {{ address.city }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <td>None</td>
+                                    {% endif %}
                                     <td class="edit">
                                         <input class="edit-button" name="edit-customer" type="submit" value="Edit">
                                     </td>

@@ -175,6 +175,29 @@ form .button input:hover{
     cursor: pointer;
 }
 
+form .save-button{
+    height: 45px;
+    margin-left: 45%;
+}
+
+form .save-button input{
+    height: 100%;
+    width: 250px;
+    outline: none;
+    border: 1px solid rgb(170, 1, 1);
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    color:rgb(218, 71, 71)
+}
+
+form .save-button input:hover{
+    background: rgb(170, 1, 1);
+    color: white;
+    cursor: pointer;
+}
+
 @media (max-width: 584px) {
     .container{
         max-width: 100%;
@@ -290,26 +313,6 @@ td{
 }
 .edit-button:hover{
     background: rgb(3, 90, 10);
-    color: white;
-    cursor: pointer;
-}
-
-.save-button {
-
-    width: 20%;
-    margin-left: 50%;
-    padding-top: 10%;
-    padding-bottom: 10%;
-    outline: none;
-    border: 1px solid rgb(170, 1, 1);
-    font-size: 12px;
-    font-weight: 900;
-    border-radius: 5px;
-    letter-spacing: 1px;
-    color:rgb(218, 71, 71)
-}
-.save-button:hover{
-    background: rgb(170, 1, 1);
     color: white;
     cursor: pointer;
 }
