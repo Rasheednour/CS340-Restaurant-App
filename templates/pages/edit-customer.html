@@ -32,7 +32,15 @@
                                 <td><input class="input-field" name="lastName" value="{{ customer_data.lastName }}"></td>
                                 <td><input class="input-field" name="email" value="{{ customer_data.email }}"></td>
                                 <td><input class="input-field" name="phoneNumber" value="{{ customer_data.phoneNumber }}"></td>
-                                <td><input class="input-field" name="currentAddress" value="{{ customer_data.currentAddress }}"></td>
+                                <td>
+                                <select name="currentAddress">
+                                    {% for address in address_data%}
+                                        {% if  address.customerID == customer_data.customerID%}
+                                        <option value="{{ address.addressID }}">{{ address.addressID }}. {{ address.streetNumber }}, {{ address.streetName }}, {{ address.city }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                </td>
                             </tr>
                             <tr>
                         </tbody>

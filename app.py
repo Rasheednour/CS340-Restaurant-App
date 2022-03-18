@@ -68,7 +68,11 @@ def restaurant_database():
             cur.execute('''SELECT * from Customers WHERE customerID = (%s)''', (data["customerID"], ))
             result = cur.fetchall()
             customer_data = result[0]
-            return render_template("./pages/edit-customer.html", customer_data=customer_data)
+
+            cur.execute(''' SELECT * from Addresses WHERE customerID = (%s) ''', (data["customerID"], ))
+            address_data = cur.fetchall()
+
+            return render_template("./pages/edit-customer.html", customer_data=customer_data, address_data = address_data)
 
         elif 'edit-address' in data:
             cur.execute('''SELECT * from Addresses WHERE addressID = (%s)''', (data["addressID"], ))
@@ -129,6 +133,17 @@ def restaurant_database():
             values = (data["addressID"],)
             sql = ('''DELETE FROM Addresses WHERE addressID = (%s)''')
             cur.execute(sql, values)
+
+            mysql.connection.commit()
+            
+            sql = ('''SELECT * FROM Customers WHERE currentAddress = (%s)''')
+            values = (data["addressID"],)
+            cur.execute(sql, values)
+            result = cur.fetchall()
+            print("DATA IS ", data)
+            if result:
+                cur.execute(''' UPDATE Customers SET currentAddress = NULL WHERE customerID = (%s)''', (data["customerID"], ))
+
             mysql.connection.commit()
 
 
@@ -286,9 +301,12 @@ def restaurant_database():
         # get the query result
         result = cur.fetchall()
 
-        # store the address info in a list
-        address_info = [result[0]["streetNumber"], result[0]["streetName"], result[0]["city"]]
+        address_info = []
 
+        if result:
+            # store the address info in a list
+            address_info = [result[0]["streetNumber"], result[0]["streetName"], result[0]["city"]]
+            
         # append the address info list to the list of addresses for each order
         order_addr_info.append(address_info)
 

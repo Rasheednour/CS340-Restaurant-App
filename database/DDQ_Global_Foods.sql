@@ -32,8 +32,6 @@ INSERT INTO `Foods` VALUES     (1, 'Mangolian Beef', 'Stir fryed sliced flank st
 
 
 
-
-
 --
 -- Table structure for table `Customers`
 --
